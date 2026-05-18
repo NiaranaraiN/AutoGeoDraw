@@ -1,0 +1,264 @@
+;--------------------------------
+
+;--------------------------------
+; 保存程序运行前环境状态
+(defun bakup_env()
+	(setq osmode_ctrl (getvar "osmode")) ;保存捕捉状??
+	(setq clayer_ctrl (getvar "clayer")) ;保存图层状??
+);finished
+
+;恢复程序前的状??
+(defun recover_env()
+  	(setvar "osmode" osmode_ctrl)
+  	(setvar "clayer" clayer_ctrl)	
+)
+
+;获取给定曲线的x坐标，并组成集合pline_coorx
+(defun get_coorx_list(pline_set / pline_index set_length result) "获取给定曲线的x坐标，并组成集合pline_coorx" "多线起点和终点坐标的列表"
+	(defun get_coorx(pline / start_point end_point pline_coorx)
+		;提取起点及终点的X坐标仩值
+			(setq start_point (vlax-curve-getstartpoint pline))
+			(setq start_point (car start_point))
+			(setq end_point (vlax-curve-getendpoint pline))
+			(setq end_point (car end_point))
+		;坐标值从小到大排列
+			(if (< start_point end_point)
+				(setq pline_coorx (list start_point end_point))
+				(setq pline_coorx (list end_point start_point)))
+
+			pline_coorx
+		)
+	(if pline_set
+		(progn
+			(setq set_length (sslength pline_set))
+			(setq pline_index 0 result '())
+			(while (< pline_index set_length)
+				(setq pline_coorx_result (get_coorx (ssname pline_set pline_index)))
+				(setq result (append result (list pline_coorx_result)))
+				(setq pline_index (+ 1 pline_index))
+			))
+			(setq result nil))
+	result
+);返回坐标值集合
+
+;;提取线段选择集内的起点x坐标值
+(defun cuntain_start_point_coordinate (curtain_line_set get_method / coordinate_list item_coordinate item_index set_length result )
+  "提取线段选择集内的起点坐标值,
+  如果'get_method'为'X'则提取X坐标值，
+  如果'get_method'为'Y'则提取Y坐标值，
+  " 
+  "返回一个列表，包含所有X或Y坐标值"
+	;---
+		(princ get_method)
+		(setq set_length (sslength curtain_line_set))
+		(setq  item_index 0);初始化索引号
+		(setq coordinate_list '());初始化坐标列表
+		(while (< item_index set_length)
+			(setq item (ssname curtain_line_set item_index));获取单条帷幕灌浆线
+			(cond
+				((= get_method "X") (setq item_coordinate (car (vlax-curve-getstartpoint item))));如果是X，则选取x值
+				((= get_method "Y") (setq item_coordinate (cadr (vlax-curve-getstartpoint item))));如果不是X，提取Y值
+			);获取线段x坐标值)
+			(setq coordinate_list (append coordinate_list (list item_coordinate)))
+			(setq item_index (1+ item_index))
+		)
+		(setq result coordinate_list)
+		result
+		;对列表索引排序得到列表result_list：(setq result_list (vl-sort-i list '<))
+)
+
+;计算缩放比例后的数据，有一个需求数据raw_data，有参照数据consult_data，参照数据对应的实际数据consult_actual_value，缩放比例actual_scale,求得raw_actual_value(即result)
+(defun caculate_real_data (raw_data consult_data consult_actual_value actual_scale / result )  "输入需要计算点的Y值、参照点的Y值、参照点实际坐标值及图纸比例，计算出计算点的高程值" "真实高程值" 
+	(setq result (+ consult_actual_value (* (- raw_data consult_data) (/ actual_scale 1000) ) ) )
+  result
+)
+
+;求一条多段线与一组多段线是否存在交点，如果存在，取得该点的坐标值
+(defun pline_inter_pline (curtain_bore curtain_bore_coorx curtain_bore_coory pline_set pline_set_coorx_list / pline_coorx_min pline_coorx_max set_length set_index result) "求一条多段线与一组多段线是否存在交点，如果存在，取得该点的坐标值" "点坐标值"
+  (setq set_length (sslength pline_set))
+  (setq set_index 0 result '(0 0))
+  (while (< set_index set_length)
+    (setq pline_coorx_min (car ((ssname pline_set_coorx_list set_index))));多段线组起点X
+    (setq pline_coorx_max (cadr ((ssname pline_set_coorx_list set_index))));多段线组终点X
+    (if (and (>= curtain_bore_coorx pline_coorx_min) (< curtain_bore_coorx pline_coorx_max));如果为真，说明钻孔位于该线段内
+        (progn
+        
+
+          (setq setindex (1+ set_length))
+        )
+        (setq set_index (1+ set_index))
+    )
+  )
+  result
+)
+
+;
+
+;-------------------------------------------------------------------
+(defun test( / result)
+	; (setq testss (ssget))
+	; ;------------------测试线段顺序--------------------
+		; 	(setq testss (ssget))
+		; 	(setq line_index 0)
+		; 	(setq ss_length (sslength testss))
+		; 	(while (< line_index ss_length)
+		; 		(setq number (+ 1 line_index))
+		; 		(setq line (ssname testss line_index))
+		; 		(setq coorx (vlax-curve-getstartpoint line))
+		; 		(command "text" coorx "0" number "")
+		; 		(setq line_index number)
+		; 	)			
+		; ;----------------测试X坐标二维列表
+		; 	(setq testss (ssget))
+		; 	(setq result (get_coorx_list testss))
+		; 	(princ result)	
+		;----------------测试索引提取函数
+		;; (setq result (cuntain_start_point_coordinate testss "Y"))
+    ;;---测试文件写入----------------------
+    ; (setq result (getfiled "选择数据保存位置" "w:\\" "csv" 1))
+    ; (setq csv_file (open result "w"))
+    ; (write-line "first-line" csv_file)
+    ; (write-line "second-line" csv_file)
+    ; (close csv_file)
+    ; (setq draw_scale (getreal "图形比例:<1000>"));设置图形比例
+    ; (setq water_elevation (getreal "请输入正常蓄水位高程："));获取正常蓄水位高程值
+    ; (setq y1 (cadr (getpoint "y1(正常水位）")))
+    ; (setq y2 (cadr (getpoint "y2")))
+    ; (setq result (caculate_real_elevation y2 y1 water_elevation draw_scale))
+	; (princ ( strcat "\n Result:" (rtos result) "\n"))
+	(setq line1 (entsel "\n选择第YI条线段: "))
+  (setq line2 (entsel "\n选择第ER条线段: "))
+  (setq ent1 (car line1))
+  (setq ent2 (car line2))
+  (setq obj1 (vlax-ename->vla-object ent1))
+  (princ)
+  (setq obj2 (vlax-ename->vla-object ent2))
+  (princ)
+  ; (setq intersections (VLAX-VARIANT-VALUE 
+  ;                       (vla-IntersectWith ent1 ent2 acExtendNone)))
+  (setq intersections (vlax-invoke obj1 'IntersectWith obj2 0))
+  (vlax-safearray->list intersections)
+  ; (foreach item intersections
+  ;   (princ (strcat "\n" item))
+  (princ intersections)
+  (princ)
+)
+
+;;运行程序					                   					  			
+(defun start_program ()
+	;----------测试-----------------------------
+		(setq	teston 1)
+		(if teston
+		(test)
+		(progn
+	;----------赋初值-----------------------------
+		;图形比例设置，默认为1000
+		(setq draw_scale (getreal "图形比例:<1000>"));设置图形比例
+		(setq water_elevation (getreal "请输入正常蓄水位高程："));获取正常蓄水位高程值
+
+		;帷幕灌浆线合集
+		(princ "\n选择帷幕灌浆线：")
+		(setq ss_curtain (ssget))
+
+		;地面线合集
+		(princ "\n选择地面线(不包括坝体线)：")
+		(setq ss_ground (ssget))
+
+		;;定义坝体底限合集
+		(setq dam_exist (getstring "\n是否有坝体进尺？Y/N?:<Y>"))
+		(if (= "Y" dam_exist)
+				(progn
+					(princ "\n选择坝顶线：")
+					(setq ss_dam_top (ssget))
+					(princ "\n选择坝底限：")
+					(setq ss_dam_bottom (ssget))
+
+				))
+		
+		;选择正常蓄水位线合集
+		(princ "\n选择正常蓄水位线：")
+		(setq ss_water_level (ssget));选择正常蓄水位
+		(setq delta_elevation (cuntain_start_point_coordinate ss_water_level "Y"))
+    (setq delta_elevation (car delta_elevation));获取正常蓄水位的Y坐标值,以调用函数获得孔口高程及孔底高程
+
+		;;定义土层线选择集
+		(setq soil_exist (getstring "\n是否有土层？Y/N?:<Y>"))
+		(if (= "Y" soil_exist)
+				(progn
+					(princ "\n选择土层底限：")
+					(setq ss_soil (ssget))
+				))
+
+
+		;;定义其它砼底限合集
+		(setq concrete_exist (getstring "\n是否有其它砼进尺？Y/N?:<Y>"))
+		(if (= "Y" concrete_exist)
+				(progn
+					(princ "\n选择砼底限：")
+					(setq ss_concrete (ssget))
+				))
+    
+    ;选择文件保存位置及名称
+    (setq SAVE_PATH (getfiled "选择数据保存位置" "" "csv" 1))
+    (setq csv_file (open SAVE_PATH "w"))
+    (write-line "钻孔编号,孔口高程,孔底高程,孔深,土层进尺,坝体进尺,砼进尺,基岩进尺,无效进尺") 
+
+	;提取各线段x坐标起始值,均为列表
+		(setq ground_coorx_list (get_coorx_list ss_ground));地面线x值列表
+		(setq soil_coorx_list (get_coorx_list ss_soil));土层线x值列表
+		(setq dan_top_coorx_list (get_coorx_list ss_dam_top));坝顶x值列表
+		(setq ss_dam_bottom_coorx_list (get_coorx_list ss_dam_bottom));坝底x值列表
+		(setq ss_concrete_coorx_list (get_coorx_list ss_concrete));;其它砼x值列表
+		
+	;提取帷幕灌浆线的起点坐标列表{curtain_coorx_list}及沿X方向布置的索引值{curtain_sorted_index}
+		(setq curtain_coorx_list (cuntain_start_point_coordinate ss_curtain "X"));获取帷幕灌浆线起点x坐标
+		(setq curtain_coory_list (cuntain_start_point_coordinate ss_curtain "Y"));获取帷幕灌浆线起点y坐标
+		(setq curtain_sorted_index (vl-sort-i curtain_coorx_list '<));对curtain_coorx_list坐标值的索引值排序，得到帷幕灌浆从小到大的索引列表curtain_sorted_index
+	
+  ;对每个灌浆线进行处理
+    (setq bore_number 1);设定钻孔编号值
+ 		(foreach curtain_index curtain_sorted_index
+	  	(setq curtain_bore (ssname ss_curtain curtain_index));提取帷幕灌浆线图元
+      (setq curtain_top_coorx (ssname curtain_coorx_list curtain_index));孔口X坐标
+      (setq curtain_top_coory (ssname curtain_coory_list curtain_index));孔口Y坐标
+      (setq curtain_bottom_coory (cadr (vlax-curve-getstartpoint curtain_bore)));孔底Y坐标
+      (setq bore_top_elevation (caculate_real_data curtain_top_coory delta_elevation water_elevation draw_scale));求孔口高程{bore_top_elevation}
+      (setq bore_bottom_elevation (caculate_real_data curtain_bottom_coory delta_elevation water_elevation draw_scale));求孔底高程{bore_bottome_elevation}
+      (setq bore_length (- bore_top_elevation bore_bottom_elevation));求孔深{bore_length}
+      ()
+
+    )
+
+
+
+	  )
+	)
+)
+
+
+   
+;命令程序
+(defun c:ttt( / *error* e_lst)
+	(setq e_lst (mapcar (function (lambda (n) (list 'setvar n (getvar n)))) 
+	'("autosnap" "osmode" "aperture" "hpspace" "hpassoc" "mirrtext" "auprec" "luprec" "dimzin" "cecolor")))
+	(defun *error* (msg)
+	(mapcar 'eval e_lst)
+			(if (not (member
+									msg
+									'(nil "函数被取消" ";错误:quit / exit abort")
+									)
+						)
+				(princ (strcat ";错误:" msg))
+			)
+	)
+	(command "undo" "be")
+	(bakup_env)
+	;程序开??
+	(vl-load-com)
+	(start_program)
+
+	;程序结束
+	(recover_env)
+	(command "undo" "e")
+	(*error* nil)
+	)

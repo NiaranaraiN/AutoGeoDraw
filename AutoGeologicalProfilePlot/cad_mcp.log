@@ -1,0 +1,68 @@
+2026-05-18 22:24:31,837 - mcp_cad_server - INFO - 启动 CAD MCP 服务器
+2026-05-18 22:24:31,981 - mcp_cad_server - INFO - 启动 CAD MCP 服务器
+2026-05-18 22:24:31,981 - mcp_cad_server - INFO - 配置文件加载成功
+2026-05-18 22:24:31,981 - cad_controller - INFO - CAD控制器已初始化
+2026-05-18 22:24:31,981 - nlp_processor - INFO - 自然语言处理器已初始化
+2026-05-18 22:24:31,981 - mcp_cad_server - INFO - CAD服务已初始化
+2026-05-18 22:24:31,984 - mcp_cad_server - INFO - 服务器正在使用 stdio 传输运行
+2026-05-18 22:24:31,987 - mcp.server.lowlevel.server - INFO - Processing request of type ListToolsRequest
+2026-05-18 22:24:34,665 - mcp.server.lowlevel.server - INFO - Processing request of type ListPromptsRequest
+2026-05-18 22:24:34,675 - mcp.server.lowlevel.server - INFO - Processing request of type GetPromptRequest
+2026-05-18 22:24:34,679 - mcp.server.lowlevel.server - INFO - Processing request of type GetPromptRequest
+2026-05-18 22:24:39,787 - mcp_cad_server - INFO - 启动 CAD MCP 服务器
+2026-05-18 22:24:39,905 - mcp_cad_server - INFO - 启动 CAD MCP 服务器
+2026-05-18 22:24:39,906 - mcp_cad_server - INFO - 配置文件加载成功
+2026-05-18 22:24:39,906 - cad_controller - INFO - CAD控制器已初始化
+2026-05-18 22:24:39,906 - nlp_processor - INFO - 自然语言处理器已初始化
+2026-05-18 22:24:39,906 - mcp_cad_server - INFO - CAD服务已初始化
+2026-05-18 22:24:39,908 - mcp_cad_server - INFO - 服务器正在使用 stdio 传输运行
+2026-05-18 22:24:39,912 - mcp.server.lowlevel.server - INFO - Processing request of type ListToolsRequest
+2026-05-18 22:24:43,320 - mcp_cad_server - INFO - 启动 CAD MCP 服务器
+2026-05-18 22:24:43,433 - mcp_cad_server - INFO - 启动 CAD MCP 服务器
+2026-05-18 22:24:43,435 - mcp_cad_server - INFO - 配置文件加载成功
+2026-05-18 22:24:43,435 - cad_controller - INFO - CAD控制器已初始化
+2026-05-18 22:24:43,435 - nlp_processor - INFO - 自然语言处理器已初始化
+2026-05-18 22:24:43,435 - mcp_cad_server - INFO - CAD服务已初始化
+2026-05-18 22:24:43,438 - mcp_cad_server - INFO - 服务器正在使用 stdio 传输运行
+2026-05-18 22:24:43,442 - mcp.server.lowlevel.server - INFO - Processing request of type ListToolsRequest
+2026-05-18 22:28:26,166 - mcp.server.lowlevel.server - INFO - Processing request of type CallToolRequest
+2026-05-18 22:28:26,168 - cad_controller - INFO - 尝试连接现有AutoCAD实例...
+2026-05-18 22:28:26,169 - cad_controller - INFO - 未找到运行中的AutoCAD实例，将尝试启动新实例: (-2147221005, 'Invalid class string', None, None)
+2026-05-18 22:28:26,169 - cad_controller - INFO - 连接失败，正在启动新的CAD实例: (-2147221005, 'Invalid class string', None, None)
+2026-05-18 22:28:26,169 - cad_controller - INFO - 正在启动AutoCAD实例...
+2026-05-18 22:28:26,170 - cad_controller - ERROR - 启动新CAD实例失败: (-2147221005, 'Invalid class string', None, None)
+2026-05-18 22:28:26,170 - cad_controller - ERROR - 启动CAD失败: (-2147221005, 'Invalid class string', None, None)
+2026-05-18 22:29:25,229 - mcp.server.lowlevel.server - INFO - Processing request of type CallToolRequest
+2026-05-18 22:29:25,230 - cad_controller - INFO - 尝试连接现有AutoCAD实例...
+2026-05-18 22:29:25,230 - cad_controller - INFO - 未找到运行中的AutoCAD实例，将尝试启动新实例: (-2147221005, 'Invalid class string', None, None)
+2026-05-18 22:29:25,230 - cad_controller - INFO - 连接失败，正在启动新的CAD实例: (-2147221005, 'Invalid class string', None, None)
+2026-05-18 22:29:25,231 - cad_controller - INFO - 正在启动AutoCAD实例...
+2026-05-18 22:29:25,231 - cad_controller - ERROR - 启动新CAD实例失败: (-2147221005, 'Invalid class string', None, None)
+2026-05-18 22:29:25,231 - cad_controller - ERROR - 启动CAD失败: (-2147221005, 'Invalid class string', None, None)
+2026-05-18 22:29:25,231 - nlp_processor - INFO - 处理命令: 复制选中的圆向右移动100
+2026-05-18 22:29:25,231 - nlp_processor - INFO - 解析命令: 复制选中的圆向右移动100
+2026-05-18 22:29:44,478 - mcp.server.lowlevel.server - INFO - Processing request of type CallToolRequest
+2026-05-18 22:29:44,479 - cad_controller - INFO - 尝试连接现有AutoCAD实例...
+2026-05-18 22:29:44,479 - cad_controller - INFO - 未找到运行中的AutoCAD实例，将尝试启动新实例: (-2147221005, 'Invalid class string', None, None)
+2026-05-18 22:29:44,480 - cad_controller - INFO - 连接失败，正在启动新的CAD实例: (-2147221005, 'Invalid class string', None, None)
+2026-05-18 22:29:44,480 - cad_controller - INFO - 正在启动AutoCAD实例...
+2026-05-18 22:29:44,480 - cad_controller - ERROR - 启动新CAD实例失败: (-2147221005, 'Invalid class string', None, None)
+2026-05-18 22:29:44,481 - cad_controller - ERROR - 启动CAD失败: (-2147221005, 'Invalid class string', None, None)
+2026-05-18 22:29:44,481 - nlp_processor - INFO - 处理命令: 复制选中的圆向右移动100
+2026-05-18 22:29:44,481 - nlp_processor - INFO - 解析命令: 复制选中的圆向右移动100
+2026-05-18 22:30:13,568 - mcp.server.lowlevel.server - INFO - Processing request of type CallToolRequest
+2026-05-18 22:30:13,569 - cad_controller - INFO - 尝试连接现有AutoCAD实例...
+2026-05-18 22:30:13,570 - cad_controller - INFO - 未找到运行中的AutoCAD实例，将尝试启动新实例: (-2147221005, 'Invalid class string', None, None)
+2026-05-18 22:30:13,570 - cad_controller - INFO - 连接失败，正在启动新的CAD实例: (-2147221005, 'Invalid class string', None, None)
+2026-05-18 22:30:13,570 - cad_controller - INFO - 正在启动AutoCAD实例...
+2026-05-18 22:30:13,570 - cad_controller - ERROR - 启动新CAD实例失败: (-2147221005, 'Invalid class string', None, None)
+2026-05-18 22:30:13,571 - cad_controller - ERROR - 启动CAD失败: (-2147221005, 'Invalid class string', None, None)
+2026-05-18 22:30:13,571 - nlp_processor - INFO - 处理命令: copy 圆 向右偏移100
+2026-05-18 22:30:13,571 - nlp_processor - INFO - 解析命令: copy 圆 向右偏移100
+2026-05-18 22:30:30,287 - mcp.server.lowlevel.server - INFO - Processing request of type CallToolRequest
+2026-05-18 22:30:30,288 - cad_controller - INFO - 尝试连接现有AutoCAD实例...
+2026-05-18 22:30:30,289 - cad_controller - INFO - 未找到运行中的AutoCAD实例，将尝试启动新实例: (-2147221005, 'Invalid class string', None, None)
+2026-05-18 22:30:30,289 - cad_controller - INFO - 连接失败，正在启动新的CAD实例: (-2147221005, 'Invalid class string', None, None)
+2026-05-18 22:30:30,289 - cad_controller - INFO - 正在启动AutoCAD实例...
+2026-05-18 22:30:30,290 - cad_controller - ERROR - 启动新CAD实例失败: (-2147221005, 'Invalid class string', None, None)
+2026-05-18 22:30:30,290 - cad_controller - ERROR - 启动CAD失败: (-2147221005, 'Invalid class string', None, None)

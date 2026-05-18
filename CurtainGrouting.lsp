@@ -1,4 +1,33 @@
-;;;孔序增减判断
+
+
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;;运行程序																															;;
+;;																																		 ;;
+;;																																		 ;;
+;;																																		 ;;
+;;																																		 ;;
+;;																																		 ;;
+;;																																		 ;;
+;;																																		 ;;
+;;																																		 ;;
+;;																																		 ;;
+;;																																		 ;;
+;;																																		 ;;
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+
+; 保存程序运行前环境状态
+(defun bakup_env()
+	(setq osmode_ctrl (getvar "osmode")) ;保存捕捉状态
+	(setq clayer_ctrl (getvar "clayer")) ;保存图层状态
+);finished
+
+;恢复程序前的状态
+(defun recover_env()
+  	(setvar "osmode" osmode_ctrl)
+  	(setvar "clayer" clayer_ctrl)	
+)
+
+
 (defun addorless(knum bullv) ;;knum孔序传入 bullv当前加减状态判断
 	(setq bully 
 		(cond 
@@ -39,7 +68,7 @@
     (command "layer" "m" "0" "")
 		(command "circle" cirpt cirr)
 		(setq cgforb (entlast));;圆
-    (command "hatch" "p" "solid" "s" cgforb "")
+    (command "-hatch" "p" "solid" "s" cgforb "")
     (setq haforb (entlast));;填充
 		(command "block" "三序孔xCadx" cirpt cgforb haforb "")
 		)
@@ -55,7 +84,7 @@
 		(setq cgforb (entlast));;圆
     (command "pline" pl1st pl2nd "a" "s" pl3rd pl1st "" )
     (setq arforb (entlast));;二序孔的半圆
-    (command "hatch" "p" "solid" "s" arforb "")
+    (command "-hatch" "p" "solid" "s" arforb "")
     (setq haforb (entlast));;填充
 		(command "block" "二序孔xCadx" cirpt cgforb haforb "")
     (entdel arforb)
@@ -73,13 +102,20 @@
 		((and (> anglev (* pi 1.25)) (< anglev (* pi 1.75)) ) "yless")
   )
 )
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;;运行程序															;;
+;;																		 ;;
+;;																		 ;;
+;;																		 ;;
+;;																		 ;;
+;;																		 ;;
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;;;孔序增减判断
 
-;;绘制灌浆孔函数
-(defun c:HZWMGJK()
-  (command "undo" "be")
-  (vl-load-com)
-  (princ "\n==========\n帷幕灌浆孔自动布置\nAuthor：Liusha.Li\n公众号:xCadx\n更多内容请访问：https://www.xcadx.com/\n==========")
-  (setvar "cmdecho" 0)
+
+
+(defun start_program ()
+	(princ "\n==========\n帷幕灌浆孔自动布置\nAuthor：Liusha.Li\n公众号:xCadx\n更多内容请访问：https://www.xcadx.com/\n==========")
   (setq prop (getreal "\n请输入图纸比例：<1000>"));;输入图形比例
   (if (= prop nil) (setq prop 1000))
   (setq cgline (car (entsel "\n请选择帷幕线：")))
@@ -114,10 +150,10 @@
 					(setq nextc (if (> (car (nth 0 interl)) (car (nth 1 interl)) ) (nth 0 interl) (nth 1 interl) ))
 					(setq cirpt nextc);; 移圆心坐标
 					(cond 
-       					((= knum 1) (setq cg1num (1+ cg1num)) )
+       			((= knum 1) (setq cg1num (1+ cg1num)) )
 						((= knum 2) (setq cg3num (1+ cg3num)) )
 						((= knum 3) (setq cg2num (1+ cg2num)) )
-                    )
+          )
 					(setq bullv (addorless knum bullv))
 					(setq knum (cgnumber knum bullv))
 					(entdel discir)
@@ -193,15 +229,39 @@
     )
   )
   ;;(command "layer" "m" "temp" "")
-  (setvar "osmode" f3ctrl)
-  (setvar "clayer" lanow)
   (princ "\n灌浆孔布置完成！共布置灌浆孔：<")(princ sumcg)(princ ">个,")
   (princ "\n其中一序孔共<")(princ cg1num)(princ ">个；")
   (princ "\n其中二序孔共<")(princ cg2num)(princ ">个；")
   (princ "\n其中三序孔共<")(princ cg3num)(princ ">个；")(princ)
   (alert (strcat "\n灌浆孔布置完成！共布置灌浆孔：<" (vl-princ-to-string sumcg) ">个," "\n其中一序孔共<" (vl-princ-to-string cg1num) ">个；" "二序孔共<" (vl-princ-to-string cg2num) ">个；" "三序孔共<" (vl-princ-to-string cg3num) ">个；") 
   )
-  (command "undo" "e")
+  
+  
 )
 
 
+;命令程序
+(defun c:HZWMGJKLLS( / *error* e_lst)
+	(setq e_lst (mapcar (function (lambda (n) (list 'setvar n (getvar n)))) 
+	'("autosnap" "osmode" "aperture" "hpspace" "hpassoc" "mirrtext" "auprec" "luprec" "dimzin" "cecolor")))
+	(defun *error* (msg)
+	(mapcar 'eval e_lst)
+			(if (not (member
+									msg
+									'(nil "函数被取消" ";错误:quit / exit abort")
+									)
+						)
+				(princ (strcat ";错误:" msg))
+			)
+	)
+	(command "undo" "be")
+	(bakup_env)
+	;程序开始
+	(vl-load-com)
+	(start_program)
+
+	;程序结束
+	(recover_env)
+	(command "undo" "e")
+	(*error* nil)
+)
