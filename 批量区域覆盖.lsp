@@ -30,11 +30,11 @@
         (vla-put-Color hatch 1)                                     
         
                                
-        (princ (strcat "\nÍê³ÉÒ»¸öÔ²µÄÌî³ä£¬ÖĞĞÄµã: " (vl-princ-to-string center)))
+        (princ (strcat "\nå®Œæˆä¸€ä¸ªåœ†çš„å¡«å……ï¼Œä¸­å¿ƒç‚¹: " (vl-princ-to-string center)))
       )
-      (princ "\nËùÓĞÔ²ÒÑ¾­Ìí¼ÓÌî³ä¸²¸Ç¡£")
+      (princ "\næ‰€æœ‰åœ†å·²ç»æ·»åŠ å¡«å……è¦†ç›–ã€‚")
     )
-    (princ "\nÎ´ÕÒµ½ÈÎºÎÔ²¶ÔÏó£¡")
+    (princ "\næœªæ‰¾åˆ°ä»»ä½•åœ†å¯¹è±¡ï¼")
   )
   (princ)
 )

@@ -31,7 +31,7 @@
 
 
                                            
-(defun get_coorx_list(self.pline_set.ss / __pline_index.int __set_length.int __result.any __pline_coorx_result.list) "»ñÈ¡¸ø¶¨ÇúÏßµÄx×ø±ê£¬²¢×é³É¼¯ºÏpline_coorx" "¶àÏßÆğµãºÍÖÕµã×ø±êµÄÁĞ±í"
+(defun get_coorx_list(self.pline_set.ss / __pline_index.int __set_length.int __result.any __pline_coorx_result.list) "è·å–ç»™å®šæ›²çº¿çš„xåæ ‡ï¼Œå¹¶ç»„æˆé›†åˆpline_coorx" "å¤šçº¿èµ·ç‚¹å’Œç»ˆç‚¹åæ ‡çš„åˆ—è¡¨"
 	(setq __pline_index.int 0 __result.any '())
   (if self.pline_set.ss
 		(progn
@@ -49,11 +49,11 @@
 
                               
 (defun cuntain_start_point_coordinate (self.curtain_line_set.ss self.get_method.str / __coordinate_list.list __item_coordinate.pt __item_index.int __set_length.int __result.any  __item.any)
-	"ÌáÈ¡Ïß¶ÎÑ¡Ôñ¼¯ÄÚµÄÆğµã×ø±êÖµ,
-	Èç¹û'get_method'Îª'X'ÔòÌáÈ¡X×ø±êÖµ£¬
-	Èç¹û'get_method'Îª'Y'ÔòÌáÈ¡Y×ø±êÖµ£¬
+	"æå–çº¿æ®µé€‰æ‹©é›†å†…çš„èµ·ç‚¹åæ ‡å€¼,
+	å¦‚æœ'get_method'ä¸º'X'åˆ™æå–Xåæ ‡å€¼ï¼Œ
+	å¦‚æœ'get_method'ä¸º'Y'åˆ™æå–Yåæ ‡å€¼ï¼Œ
 	" 
-	"@returns ·µ»ØÒ»¸öÁĞ±í£¬°üº¬ËùÓĞX»òY×ø±êÖµ"
+	"@returns è¿”å›ä¸€ä¸ªåˆ—è¡¨ï¼ŒåŒ…å«æ‰€æœ‰Xæˆ–Yåæ ‡å€¼"
 	    
 		(setq __set_length.int (sslength self.curtain_line_set.ss))
 		(setq  __item_index.int 0)             
@@ -73,7 +73,7 @@
 )
 
                                                                                                                                                                       
-(defun caculate_real_data (self.raw_data.str self.consult_data.any self.consult_actual_value.any self.actual_scale.real / __result.any )  "ÊäÈëĞèÒª¼ÆËãµãµÄYÖµ¡¢²ÎÕÕµãµÄYÖµ¡¢²ÎÕÕµãÊµ¼Ê×ø±êÖµ¼°Í¼Ö½±ÈÀı£¬¼ÆËã³ö¼ÆËãµãµÄ¸ß³ÌÖµ" "ÕæÊµ¸ß³ÌÖµ" 
+(defun caculate_real_data (self.raw_data.str self.consult_data.any self.consult_actual_value.any self.actual_scale.real / __result.any )  "è¾“å…¥éœ€è¦è®¡ç®—ç‚¹çš„Yå€¼ã€å‚ç…§ç‚¹çš„Yå€¼ã€å‚ç…§ç‚¹å®é™…åæ ‡å€¼åŠå›¾çº¸æ¯”ä¾‹ï¼Œè®¡ç®—å‡ºè®¡ç®—ç‚¹çš„é«˜ç¨‹å€¼" "çœŸå®é«˜ç¨‹å€¼" 
 	(setq __result.any (+ self.consult_actual_value.any (* (- self.raw_data.str self.consult_data.any) (/ self.actual_scale.real 1000) ) ) )
   (setq __result.any (read (rtos __result.any 2 *result_precison*)))
   __result.any
@@ -81,7 +81,7 @@
 
 
                                                                                                         
-(defun get_inter_point (self.pline1.ename self.pline2.ename / __obj_inter_result.obj __result.any __obj_1.obj __obj_2.obj) "ÇóÁ½¸ö²¼ÏßµÄ½»µã¡£²¢·µ»Ø½»µã×ø±êÖµ£¨±¾³ÌĞòÖĞá¡Ä»¹à½¬Óë¸÷½çÏŞ½»µã½öÓĞ0~1¸öÖµ£¬ËùÒÔ²»¿¼ÂÇ¶à¸ö½»µãµÄÎÊÌâ¡£" "·µ»Ø½»µã×ø±ê£¬ÁĞ±íĞÍ"
+(defun get_inter_point (self.pline1.ename self.pline2.ename / __obj_inter_result.obj __result.any __obj_1.obj __obj_2.obj) "æ±‚ä¸¤ä¸ªå¸ƒçº¿çš„äº¤ç‚¹ã€‚å¹¶è¿”å›äº¤ç‚¹åæ ‡å€¼ï¼ˆæœ¬ç¨‹åºä¸­å¸·å¹•çŒæµ†ä¸å„ç•Œé™äº¤ç‚¹ä»…æœ‰0~1ä¸ªå€¼ï¼Œæ‰€ä»¥ä¸è€ƒè™‘å¤šä¸ªäº¤ç‚¹çš„é—®é¢˜ã€‚" "è¿”å›äº¤ç‚¹åæ ‡ï¼Œåˆ—è¡¨å‹"
   (setq __obj_1.obj (vlax-ename->vla-object self.pline1.ename))
   (setq __obj_2.obj (vlax-ename->vla-object self.pline2.ename))
   (setq __obj_inter_result.obj (vlax-variant-value (vlax-invoke-method __obj_1.obj 'IntersectWith __obj_2.obj 0)))
@@ -90,7 +90,7 @@
 )
 
                                                                  
-(defun stratum_inter (self.curtain_bore.any self.curtain_bore_coorx.pt self.pline_set.ss self.pline_set_coorx_list.list / __inter_point.pt __stratum_line.str __pline_coorx_min.pt __pline_coorx_max.pt __set_length.int __set_index.int __result.any) "ÇóÒ»Ìõ¶à¶ÎÏßÓëÒ»×é¶à¶ÎÏßÊÇ·ñ´æÔÚ½»µã£¬Èç¹û´æÔÚ£¬È¡µÃ¸ÃµãµÄ×ø±êÖµ" "µã×ø±êÖµ"
+(defun stratum_inter (self.curtain_bore.any self.curtain_bore_coorx.pt self.pline_set.ss self.pline_set_coorx_list.list / __inter_point.pt __stratum_line.str __pline_coorx_min.pt __pline_coorx_max.pt __set_length.int __set_index.int __result.any) "æ±‚ä¸€æ¡å¤šæ®µçº¿ä¸ä¸€ç»„å¤šæ®µçº¿æ˜¯å¦å­˜åœ¨äº¤ç‚¹ï¼Œå¦‚æœå­˜åœ¨ï¼Œå–å¾—è¯¥ç‚¹çš„åæ ‡å€¼" "ç‚¹åæ ‡å€¼"
 	(setq __set_length.int (sslength self.pline_set.ss))
 	(setq __set_index.int 0 __result.any '(0 0 0))
 	(while (< __set_index.int __set_length.int)
@@ -139,7 +139,7 @@
 
                                                
 (defun remove_overlap_length ( self.arg1.any self.arg2.any self.arg3.any / __length_list.list __list_index_list.int __value_max.any __value_mid.any __value_min.any __remove_overlap_list.list __i.int __item_value.any __item.any __result.any)
-  "È¥³ıÍÁÌå¡¢°ÓÌå¡¢íÅ½ø³ßÍ¬Ê±´æÔÚÊ±ÉÏ²¿ÖØ¸´µÄ²¿·Ö£¬strtum_length¼ÆËãµÄÊÇ´Ó¿×¿ÚÖÁ²ãµ×ÏŞ,ËùÒÔÈç¹ûÍ¬Ê±´æÔÚ£¬ÉÏ²¿·ÖÓĞÖØ¸´µÄ¡£Ë¼Â·ÔòÊÇÈıÕß¶Ô±ÈÅÅĞò£¬×î´ó-´Î´ó£¬´Î´ó-×îĞ¡£¬µÃµ½×îĞÂµÄÊı¾İ" 
+  "å»é™¤åœŸä½“ã€åä½“ã€ç ¼è¿›å°ºåŒæ—¶å­˜åœ¨æ—¶ä¸Šéƒ¨é‡å¤çš„éƒ¨åˆ†ï¼Œstrtum_lengthè®¡ç®—çš„æ˜¯ä»å­”å£è‡³å±‚åº•é™,æ‰€ä»¥å¦‚æœåŒæ—¶å­˜åœ¨ï¼Œä¸Šéƒ¨åˆ†æœ‰é‡å¤çš„ã€‚æ€è·¯åˆ™æ˜¯ä¸‰è€…å¯¹æ¯”æ’åºï¼Œæœ€å¤§-æ¬¡å¤§ï¼Œæ¬¡å¤§-æœ€å°ï¼Œå¾—åˆ°æœ€æ–°çš„æ•°æ®" 
   ""
   (setq __length_list.list (list self.arg1.any self.arg2.any self.arg3.any))
   (setq __list_index_list.int (vl-sort-i __length_list.list '>))                                
@@ -161,10 +161,10 @@
 
 
                  
-(defun print_value_prop (self.get_value.any / ) "º¯Êı¹¦ÄÜËµÃ÷" "º¯Êı·µ»ØÖµ"
-      (princ "\nÀàĞÍ£º")
+(defun print_value_prop (self.get_value.any / ) "å‡½æ•°åŠŸèƒ½è¯´æ˜" "å‡½æ•°è¿”å›å€¼"
+      (princ "\nç±»å‹ï¼š")
       (princ (type self.get_value.any))
-      (princ "\nÊıÖµ£º")
+      (princ "\næ•°å€¼ï¼š")
       (princ (rtos self.get_value.any))
       (princ "\n ------------")
       (princ "\n")
@@ -271,102 +271,102 @@
   (defun botton_action (self.botton_id.int / __ss_length.int)
     (cond 
 			( (= self.botton_id.int 2)                 
-				(alert "×¢Òâ£º\n    Ê¹ÓÃÊ±ÇëÈ·±£Í¼Ö½µ¥Î»Îª¡°Ã×¡±£¬Ä£ĞÍ¿Õ¼ä±ÈÀıÎª1£º1,ÒÔÃâ³ÌĞò´íÎó¡£\n    ³ÌĞòÏëÒªµÃµ½ÕıÈ·½á¹û£¬±ØÑ¡Ïß¶Î£¨¹à½¬Ïß¡¢Õı³£ĞîË®Î»Ïß£©¡¢ÆÊÃæÍ¼±ÈÀı¡¢Õı³£ĞîË®Î»¸ß³Ì¡¢±£´æÂ·¾¶±ØĞëÌîĞ´£¬·ñÔò³ÌĞò»á³ö´í¡£\n     ³ÌĞòÎª³õÊ¼¿ª·¢°æ£¬Çë½á¹û¿ÉÄÜ»áÓĞÒ»Ğ©²»×¼È·ĞÔ£¬Êı¾İÍ³¼ÆºóÇë×ÔĞĞ±È¶Ô½á¹ûµÄ¿É¿¿ĞÔ£¡\n    ³ÌĞòÔËĞĞ¹ı³ÌÖĞÈçÓĞÎÊÌâ¿ÉÁªÏµ mail@liusha.li\n    \n    \n    \n×÷Õß:Liusha.Li(email:mail@liusha.li)   2024.05"
+				(alert "æ³¨æ„ï¼š\n    ä½¿ç”¨æ—¶è¯·ç¡®ä¿å›¾çº¸å•ä½ä¸ºâ€œç±³â€ï¼Œæ¨¡å‹ç©ºé—´æ¯”ä¾‹ä¸º1ï¼š1,ä»¥å…ç¨‹åºé”™è¯¯ã€‚\n    ç¨‹åºæƒ³è¦å¾—åˆ°æ­£ç¡®ç»“æœï¼Œå¿…é€‰çº¿æ®µï¼ˆçŒæµ†çº¿ã€æ­£å¸¸è“„æ°´ä½çº¿ï¼‰ã€å‰–é¢å›¾æ¯”ä¾‹ã€æ­£å¸¸è“„æ°´ä½é«˜ç¨‹ã€ä¿å­˜è·¯å¾„å¿…é¡»å¡«å†™ï¼Œå¦åˆ™ç¨‹åºä¼šå‡ºé”™ã€‚\n     ç¨‹åºä¸ºåˆå§‹å¼€å‘ç‰ˆï¼Œè¯·ç»“æœå¯èƒ½ä¼šæœ‰ä¸€äº›ä¸å‡†ç¡®æ€§ï¼Œæ•°æ®ç»Ÿè®¡åè¯·è‡ªè¡Œæ¯”å¯¹ç»“æœçš„å¯é æ€§ï¼\n    ç¨‹åºè¿è¡Œè¿‡ç¨‹ä¸­å¦‚æœ‰é—®é¢˜å¯è”ç³» mail@liusha.li\n    \n    \n    \nä½œè€…:Liusha.Li(email:mail@liusha.li)   2024.05"
         )
       )
       ( (= self.botton_id.int 3)                 
-        (princ "\n Ñ¡Ôñá¡Ä»¹à½¬Ïß:")
+        (princ "\n é€‰æ‹©å¸·å¹•çŒæµ†çº¿:")
         (setq __ss_curtain.any (ssget))
         (setq __ss_length.int (sslength __ss_curtain.any))
         (if (= __ss_length.int 0)
-          (setq *selectcurtainstatus_value* "ÎŞÑ¡Ôñ")
-          (setq *selectcurtainstatus_value* (strcat "ÒÑÑ¡" (itoa __ss_length.int)))
+          (setq *selectcurtainstatus_value* "æ— é€‰æ‹©")
+          (setq *selectcurtainstatus_value* (strcat "å·²é€‰" (itoa __ss_length.int)))
         )
       )
 
       ( (= self.botton_id.int 4) 
-        (princ "\n Ñ¡ÔñÕı³£ĞîË®Î»Ïß:")
+        (princ "\n é€‰æ‹©æ­£å¸¸è“„æ°´ä½çº¿:")
         (setq __ss_water_level.any (ssget))
         (setq __ss_length.int (sslength __ss_water_level.any))
         (setq *selectwaterlevelbotton_value* __ss_water_level.any)
         (if (= __ss_length.int 0)
-          (setq *selectwaterlevelstatus_value* "ÎŞÑ¡Ôñ")
-					(setq *selectwaterlevelstatus_value* (strcat "ÒÑÑ¡" (itoa __ss_length.int)))
+          (setq *selectwaterlevelstatus_value* "æ— é€‰æ‹©")
+					(setq *selectwaterlevelstatus_value* (strcat "å·²é€‰" (itoa __ss_length.int)))
       	)
 			)
 
 			( (= self.botton_id.int 5)
-				(princ "\n Ñ¡ÔñµØ±íÃæÏß:")
+				(princ "\n é€‰æ‹©åœ°è¡¨é¢çº¿:")
 				(setq __ss_ground.any (ssget))
 				(setq __ss_length.int (sslength __ss_ground.any))
 				(if (= __ss_length.int 0)
-					(setq *selectgroundstatus_value* "ÎŞÑ¡Ôñ")
-					(setq *selectgroundstatus_value* (strcat "ÒÑÑ¡" (itoa __ss_length.int)))	
+					(setq *selectgroundstatus_value* "æ— é€‰æ‹©")
+					(setq *selectgroundstatus_value* (strcat "å·²é€‰" (itoa __ss_length.int)))	
 				)      
 			)
 
 
       ((= self.botton_id.int 6)
-        (princ "\n Ñ¡Ôñ¸²¸Ç²ãÓë»ùÑÒ·Ö½çÏß:")
+        (princ "\n é€‰æ‹©è¦†ç›–å±‚ä¸åŸºå²©åˆ†ç•Œçº¿:")
         (setq __ss_soil.any (ssget))
         (setq __ss_length.int (sslength __ss_soil.any))
         (if (= __ss_length.int 0)
-          (setq *selectsoilstatus_value* "ÎŞÑ¡Ôñ")
-          (setq *selectsoilstatus_value* (strcat "ÒÑÑ¡" (itoa __ss_length.int)))
+          (setq *selectsoilstatus_value* "æ— é€‰æ‹©")
+          (setq *selectsoilstatus_value* (strcat "å·²é€‰" (itoa __ss_length.int)))
         )     
       )
 
 
       ((= self.botton_id.int 7)
-        (princ "\n Ñ¡Ôñ°Ó¶¥Ïß:")
+        (princ "\n é€‰æ‹©åé¡¶çº¿:")
         (setq __ss_dam_top.any (ssget))
         (setq __ss_length.int (sslength __ss_dam_top.any))
         (if (= __ss_length.int 0)
-          (setq *selectdamtopstatus_value* "ÎŞÑ¡Ôñ")
-          (setq *selectdamtopstatus_value* (strcat "ÒÑÑ¡" (itoa __ss_length.int)))
+          (setq *selectdamtopstatus_value* "æ— é€‰æ‹©")
+          (setq *selectdamtopstatus_value* (strcat "å·²é€‰" (itoa __ss_length.int)))
         )        
       )
 
 
       ((= self.botton_id.int 8)
-        (princ "\n Ñ¡Ôñ°Óµ×Ïß:")
+        (princ "\n é€‰æ‹©ååº•çº¿:")
         (setq __ss_dam_bottom.any (ssget))
         (setq __ss_length.int (sslength __ss_dam_bottom.any))
         (if (= __ss_length.int 0)
-          (setq *selectdambottomstatus_value* "ÎŞÑ¡Ôñ")
-          (setq *selectdambottomstatus_value* (strcat "ÒÑÑ¡" (itoa __ss_length.int)))
+          (setq *selectdambottomstatus_value* "æ— é€‰æ‹©")
+          (setq *selectdambottomstatus_value* (strcat "å·²é€‰" (itoa __ss_length.int)))
         )            
       )
 
 
       ((= self.botton_id.int 9)
-        (princ "\n Ñ¡ÔñÆäËü·Ö½çÏß:")
+        (princ "\n é€‰æ‹©å…¶å®ƒåˆ†ç•Œçº¿:")
         (setq __ss_concrete.any (ssget))
         (setq __ss_length.int (sslength __ss_concrete.any))
         (if (= __ss_length.int 0)
-          (setq *selectconcretestatus_value* "ÎŞÑ¡Ôñ")
-          (setq *selectconcretestatus_value* (strcat "ÒÑÑ¡" (itoa __ss_length.int)))
+          (setq *selectconcretestatus_value* "æ— é€‰æ‹©")
+          (setq *selectconcretestatus_value* (strcat "å·²é€‰" (itoa __ss_length.int)))
         )                   
       )
 
 
       ((= self.botton_id.int 10)      
-        (setq *selectcurtainstatus_value* "ÎŞÑ¡Ôñ")
-        (setq *selectwaterlevelstatus_value* "ÎŞÑ¡Ôñ")
-        (setq *sselectgroundstatus_value* "ÎŞÑ¡Ôñ")
-        (setq *selectsoilstatus_value* "ÎŞÑ¡Ôñ")
-        (setq *selectdamtopstatus_value* "ÎŞÑ¡Ôñ")
-        (setq *selectdambottomstatus_value* "ÎŞÑ¡Ôñ")
-        (setq *selectconcretestatus_value* "ÎŞÑ¡Ôñ")
+        (setq *selectcurtainstatus_value* "æ— é€‰æ‹©")
+        (setq *selectwaterlevelstatus_value* "æ— é€‰æ‹©")
+        (setq *sselectgroundstatus_value* "æ— é€‰æ‹©")
+        (setq *selectsoilstatus_value* "æ— é€‰æ‹©")
+        (setq *selectdamtopstatus_value* "æ— é€‰æ‹©")
+        (setq *selectdambottomstatus_value* "æ— é€‰æ‹©")
+        (setq *selectconcretestatus_value* "æ— é€‰æ‹©")
         (setq *waterlevelelevationinput_value* "")
         (setq *drawingscaleinput_value* "")
-        (setq *showsavepath_value* "ÇëÑ¡Ôñ±£´æÂ·¾¶£¡")
+        (setq *showsavepath_value* "è¯·é€‰æ‹©ä¿å­˜è·¯å¾„ï¼")
         (setq __dialogstatus.bool 2 __ss_curtain.any nil __ss_ground.any nil __ss_dam_top.any nil __ss_dam_bottom.any nil __ss_water_level.any nil __ss_soil.any nil __ss_concrete.any nil ) 
       )
 
 
       ((= self.botton_id.int 11)
-        (setq __save_path.str (getfiled "Ñ¡ÔñÊı¾İ±£´æÎ»ÖÃ" *showsavepath_value* "csv" 1))
+        (setq __save_path.str (getfiled "é€‰æ‹©æ•°æ®ä¿å­˜ä½ç½®" *showsavepath_value* "csv" 1))
         (setq *showsavepath_value* __save_path.str)
       )
     )
@@ -415,22 +415,22 @@
   
 	       
 		(setq __ss_curtain.any nil __ss_ground.any nil __ss_dam_top.any nil __ss_dam_bottom.any nil __ss_water_level.any nil __ss_soil.any nil __ss_concrete.any nil __save_path.str nil )
-		(setq *selectcurtainstatus_value* "ÎŞÑ¡Ôñ")
-		(setq *selectwaterlevelstatus_value* "ÎŞÑ¡Ôñ")
-		(setq *selectgroundstatus_value* "ÎŞÑ¡Ôñ")
-		(setq *selectsoilstatus_value* "ÎŞÑ¡Ôñ")
-		(setq *selectdamtopstatus_value* "ÎŞÑ¡Ôñ")
-		(setq *selectdambottomstatus_value* "ÎŞÑ¡Ôñ")
-		(setq *selectconcretestatus_value* "ÎŞÑ¡Ôñ")
-		(setq *showsavepath_value* "ÇëÑ¡Ôñ±£´æÂ·¾¶£¡")
+		(setq *selectcurtainstatus_value* "æ— é€‰æ‹©")
+		(setq *selectwaterlevelstatus_value* "æ— é€‰æ‹©")
+		(setq *selectgroundstatus_value* "æ— é€‰æ‹©")
+		(setq *selectsoilstatus_value* "æ— é€‰æ‹©")
+		(setq *selectdamtopstatus_value* "æ— é€‰æ‹©")
+		(setq *selectdambottomstatus_value* "æ— é€‰æ‹©")
+		(setq *selectconcretestatus_value* "æ— é€‰æ‹©")
+		(setq *showsavepath_value* "è¯·é€‰æ‹©ä¿å­˜è·¯å¾„ï¼")
     (load_menu)
     (get_input_value)
                                                     
     (setq *result_precison* 3)
                              
 		(while (and (= __dialogstatus.bool 1) (not (numberp *draw_scale*)))
-			(alert "ÇëÊäÈëÍ¼ĞÎ±ÈÀı£¡")
-			(setq *draw_scale* (getreal "Í¼ĞÎ±ÈÀı:<1000>"))             
+			(alert "è¯·è¾“å…¥å›¾å½¢æ¯”ä¾‹ï¼")
+			(setq *draw_scale* (getreal "å›¾å½¢æ¯”ä¾‹:<1000>"))             
 		)
 		                                
 		                          
@@ -439,7 +439,7 @@
 		                     
 		                                                           
 		(while (and (= __dialogstatus.bool 1) (not (numberp __water_elevation.any)))
-    	(setq __water_elevation.any (getreal "ÇëÊäÈëÕı³£ĞîË®Î»¸ß³Ì£º"))
+    	(setq __water_elevation.any (getreal "è¯·è¾“å…¥æ­£å¸¸è“„æ°´ä½é«˜ç¨‹ï¼š"))
     )                      
 		
 
@@ -503,15 +503,15 @@
 	                         
 	                                                               
   
-	(while (and (= __dialogstatus.bool 1) (or (not __save_path.str) (= __save_path.str "ÇëÑ¡Ôñ±£´æÂ·¾¶£¡")))
+	(while (and (= __dialogstatus.bool 1) (or (not __save_path.str) (= __save_path.str "è¯·é€‰æ‹©ä¿å­˜è·¯å¾„ï¼")))
 			(progn 
-			(alert "Ñ¡ÔñÊı¾İ±£´æÎ»ÖÃ£¡")
-     	(setq __save_path.str (getfiled "Ñ¡ÔñÊı¾İ±£´æÎ»ÖÃ" "" "csv" 1))
+			(alert "é€‰æ‹©æ•°æ®ä¿å­˜ä½ç½®ï¼")
+     	(setq __save_path.str (getfiled "é€‰æ‹©æ•°æ®ä¿å­˜ä½ç½®" "" "csv" 1))
 			)
   
   ) 
 	(setq __csv_file.file (open __save_path.str "w"))
-	(write-line "×ê¿×±àºÅ,¿×¿Ú¸ß³Ì,¿×µ×¸ß³Ì,¿×Éî,ÍÁ²ã½ø³ß,°ÓÌå½ø³ß,íÅ½ø³ß,»ùÑÒ½ø³ß,ÓĞĞ§½ø³ß,ÎŞĞ§½ø³ß" __csv_file.file) 
+	(write-line "é’»å­”ç¼–å·,å­”å£é«˜ç¨‹,å­”åº•é«˜ç¨‹,å­”æ·±,åœŸå±‚è¿›å°º,åä½“è¿›å°º,ç ¼è¿›å°º,åŸºå²©è¿›å°º,æœ‰æ•ˆè¿›å°º,æ— æ•ˆè¿›å°º" __csv_file.file) 
   
                                
 	(setq __ground_coorx_list.list (get_coorx_list __ss_ground.any))              
@@ -569,7 +569,7 @@
   	)
         
 	(close __csv_file.file)
-  (alert (strcat "½ø³ßÍ³¼ÆÍê³É£¡ÒÑ±£´æÔÚ<" __save_path.str ">"))
+  (alert (strcat "è¿›å°ºç»Ÿè®¡å®Œæˆï¼å·²ä¿å­˜åœ¨<" __save_path.str ">"))
                         
                                                     
      
@@ -586,10 +586,10 @@
 		(mapcar 'eval __e_lst.any)
 			(if (not (member
 									self.msg.str
-									'(nil "º¯Êı±»È¡Ïû" ";´íÎó:quit / exit abort")
+									'(nil "å‡½æ•°è¢«å–æ¶ˆ" ";é”™è¯¯:quit / exit abort")
 									)
 						)
-				(princ (strcat ";´íÎó:" self.msg.str))
+				(princ (strcat ";é”™è¯¯:" self.msg.str))
 			)
 	)
 	(command "undo" "be")

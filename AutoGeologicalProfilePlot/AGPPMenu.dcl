@@ -5,7 +5,7 @@ StartMenu: dialog {
     alignment = centered;
     children_alignment = centered;
     : text_part { 
-      value =  "µØÖÊÆÊÃæ×Ô¶¯»æÖÆ³ÌĞòv1.0 Product By Liusha@2024";
+      value =  "åœ°è´¨å‰–é¢è‡ªåŠ¨ç»˜åˆ¶ç¨‹åºv1.0 Product By Liusha@2024";
      }
   }
   : row {
@@ -22,25 +22,25 @@ StartMenu: dialog {
         fixed_width=true;
         height=3;
         width =24;
-        label = "Ñ¡ÔñÆ½ÃæÍ¼ÆÊÃæÏß";
-        : text { label = "ÎŞÑ¡Ôñ"; key = "SelectSectionLine"; value = "ÎŞÑ¡Ôñ"; }
-        : retirement_button{ label = "Ñ¡Ôñ"; key = "isSelectSectionLine";}
+        label = "é€‰æ‹©å¹³é¢å›¾å‰–é¢çº¿";
+        : text { label = "æ— é€‰æ‹©"; key = "SelectSectionLine"; value = "æ— é€‰æ‹©"; }
+        : retirement_button{ label = "é€‰æ‹©"; key = "isSelectSectionLine";}
       }
       : row {
         fixed_height=true;
         fixed_width=true;
         height=3;
         width =24;
-        label = "Ñ¡ÔñÆÊÃæÍ¼ÆÊÃæÏß";
-        : text { label = "ÎŞÑ¡Ôñ"; key = "SelectSectionGround"; value = "ÎŞÑ¡Ôñ"; }
-        : retirement_button{ label = "Ñ¡Ôñ"; key = "isSelectSectionGround";}
+        label = "é€‰æ‹©å‰–é¢å›¾å‰–é¢çº¿";
+        : text { label = "æ— é€‰æ‹©"; key = "SelectSectionGround"; value = "æ— é€‰æ‹©"; }
+        : retirement_button{ label = "é€‰æ‹©"; key = "isSelectSectionGround";}
       }
     }
     : column {
-      label = "Í¼ĞÎ±ÈÀı";
+      label = "å›¾å½¢æ¯”ä¾‹";
     : row {
       : edit_box { 
-        label = "ÆÊÃæÍ¼±ÈÀı1:";
+        label = "å‰–é¢å›¾æ¯”ä¾‹1:";
         key = "PlanScale";
         value = "10000";
       }     
@@ -48,7 +48,7 @@ StartMenu: dialog {
     : row {
       : edit_box {  
         key = "SectionScale";
-        label = "ÆÊÃæÍ¼±ÈÀı1:";
+        label = "å‰–é¢å›¾æ¯”ä¾‹1:";
         value = "1000";
       }      
     }
@@ -60,17 +60,17 @@ StartMenu: dialog {
     fixed_width=true;
     height=3;
     width =24;
-      label = "»æÖÆ";
+      label = "ç»˜åˆ¶";
     : retirement_button  { 
-      label = "Ìí¼ÓÌØÕ÷µã";
+      label = "æ·»åŠ ç‰¹å¾ç‚¹";
       key = "AddFeaturePoint";
      }
     : retirement_button  { 
-      label = "ÖØĞÂÑ¡Ôñµã";
+      label = "é‡æ–°é€‰æ‹©ç‚¹";
       key = "RepickFeaturePoint";
      }
     : retirement_button  { 
-      label = "É¾³ıÉÏÒ»µã";
+      label = "åˆ é™¤ä¸Šä¸€ç‚¹";
       key = "DeleteLastPoint";
      }
   }
@@ -79,43 +79,43 @@ StartMenu: dialog {
     width = 24;
     alignment = centered;
     children_alignment = centered;
-    : edit_box { key = "ImportBakupData"; label = "ÎÄ¼şÂ·¾¶"; value = "NULL"; }
-    : button { key = "BottonForImport"; label = "µ¼ÈëÎÄ¼ş";}
+    : edit_box { key = "ImportBakupData"; label = "æ–‡ä»¶è·¯å¾„"; value = "NULL"; }
+    : button { key = "BottonForImport"; label = "å¯¼å…¥æ–‡ä»¶";}
   }
   : row {
     height= 2;
     width = 24;
     alignment = centered;
     children_alignment = centered;
-    : edit_box { key = "OutputBakupData"; label = "ÎÄ¼şÂ·¾¶"; value = "NULL"; }
-    : button { key = "BottonForOutput"; label = "µ¼³öÎÄ¼ş"; }
+    : edit_box { key = "OutputBakupData"; label = "æ–‡ä»¶è·¯å¾„"; value = "NULL"; }
+    : button { key = "BottonForOutput"; label = "å¯¼å‡ºæ–‡ä»¶"; }
   }
   ok_cancel;
 }
 
 ConfirmEnd : dialog{
-  : text { label = "ÊÇ·ñ½áÊøÑ¡µã£¿"; key = "ConfirmEndText"; value ="ÊÇ·ñ½áÊøÑ¡µã£¿";}
+  : text { label = "æ˜¯å¦ç»“æŸé€‰ç‚¹ï¼Ÿ"; key = "ConfirmEndText"; value ="æ˜¯å¦ç»“æŸé€‰ç‚¹ï¼Ÿ";}
   ok_cancel;
 }
 
 ConfirmCancel : dialog{
-  : text { label = "È·¶¨ÖÕÖ¹³ÌĞò£¿";  key = "ConfirmCancelText"; value = "È·¶¨ÖÕÖ¹³ÌĞò£¿";}
+  : text { label = "ç¡®å®šç»ˆæ­¢ç¨‹åºï¼Ÿ";  key = "ConfirmCancelText"; value = "ç¡®å®šç»ˆæ­¢ç¨‹åºï¼Ÿ";}
   ok_cancel;
 }
 
 /*
-  µØ²ãÏÂÏŞÊäÈë¿ò
+  åœ°å±‚ä¸‹é™è¾“å…¥æ¡†
 */
 InputLimit : dialog {
-  //µÚ¶şĞĞ£¬µÚÒ»ÁĞ·ÅÏß£¬µÚ¶şÁĞ·ÅÕı³£ĞîË®Î»¸ß³Ì
-      label = "²ãºñÊäÈë";
+  //ç¬¬äºŒè¡Œï¼Œç¬¬ä¸€åˆ—æ”¾çº¿ï¼Œç¬¬äºŒåˆ—æ”¾æ­£å¸¸è“„æ°´ä½é«˜ç¨‹
+      label = "å±‚åšè¾“å…¥";
       fixed_height=true;
       fixed_width=true;
       height=3;
       width =24;
 
       : edit_box { 
-        label = "Î»ÖÃÃèÊö£º";
+        label = "ä½ç½®æè¿°ï¼š";
         fixed_width =true;
         width =10;
         edit_width = 8;
@@ -125,7 +125,7 @@ InputLimit : dialog {
       }
 
       : edit_box { 
-        label = "ÍÁ²ãºñ¶È£º";
+        label = "åœŸå±‚åšåº¦ï¼š";
         fixed_width =true;
         width =10;
         edit_width = 8;
@@ -134,7 +134,7 @@ InputLimit : dialog {
         value = "3,";
       }
       : edit_box { 
-        label = "Ç¿·ç»¯ºñ¶È";
+        label = "å¼ºé£åŒ–åšåº¦";
         fixed_width =true;
         width =10;
         edit_width = 8;
@@ -143,7 +143,7 @@ InputLimit : dialog {
         value = "3";
       }
       : edit_box { 
-        label = "Èõ·ç»¯ºñ¶È";
+        label = "å¼±é£åŒ–åšåº¦";
         fixed_width =true;
         width =10;
         edit_width = 8;
@@ -151,59 +151,59 @@ InputLimit : dialog {
         key = "moderate_limits";
         value = "6";
       }
-      //: retirement_button{ label = "Ìí¼Ó";key = "add";}
+      //: retirement_button{ label = "æ·»åŠ ";key = "add";}
   ok_cancel;
 }
 
 InputStructure : dialog {
   : row {      
-    label = "µØ²ãÏßÊäÈë";
+    label = "åœ°å±‚çº¿è¾“å…¥";
     fixed_height=true;
     fixed_width=true;
     children_fixed_width =true;
     children_fixed_height =true;
   : boxed_radio_column {
-    label = "Ñ¡ÔñÀàĞÍ";
+    label = "é€‰æ‹©ç±»å‹";
     alignment = left;
     width = 5;
     fixed_width = true;
     height = 2;
     fixed_height = true ;
-    : radio_button {  //µØ²ã·Ö½çÏß£»
+    : radio_button {  //åœ°å±‚åˆ†ç•Œçº¿ï¼›
       alignment = left;
       width = 8;
       fix_width = 8;
-      label = "µØ²ã·Ö½ç";
+      label = "åœ°å±‚åˆ†ç•Œ";
       key = "IsBoundary";
       value = 1;
       is_default = true ;
      }
-    : radio_button {  //¶Ï²ã
+    : radio_button {  //æ–­å±‚
       alignment = left;
       width = 10;
       fixed_width =10;
-      label ="¶Ï²ã";
+      label ="æ–­å±‚";
       key = "IsFault";
       value = 0;
      }
-    : radio_button {  //ñŞÖå
+    : radio_button {  //è¤¶çš±
       alignment = left;
       width = 10;
       fixed_width =10;
-      label = "ñŞÖå";
+      label = "è¤¶çš±";
       key = "IsFold";
       value =0;
      }
   }
   : boxed_column {
-    label = "ÊäÈë£º";
+    label = "è¾“å…¥ï¼š";
     height = 2;
     children_fixed_height = 2 ;
     children_fixed_height = 2;
     children_fixed_width = 8;
-    : edit_box{ key="StructurePointName";label="Î»ÖÃÃèÊö"; value = "NULL"; }
-    : edit_box{ key="LastGeoCode";label="Ç°ÃæµØ²ã";  }
-    : edit_box{ key="NextGeoCode";label="ºóÃæµØ²ã";  }
+    : edit_box{ key="StructurePointName";label="ä½ç½®æè¿°"; value = "NULL"; }
+    : edit_box{ key="LastGeoCode";label="å‰é¢åœ°å±‚";  }
+    : edit_box{ key="NextGeoCode";label="åé¢åœ°å±‚";  }
   }
 }
   ok_cancel;
@@ -211,17 +211,17 @@ InputStructure : dialog {
 
 SelectPointType : dialog {
   : boxed_row {
-    label = "ÌØÕ÷µãÀàĞÍ";
+    label = "ç‰¹å¾ç‚¹ç±»å‹";
     : retirement_button { 
       fixed_width=true;
       width= 5;
-      label ="·Ö²ãºñ¶È";
+      label ="åˆ†å±‚åšåº¦";
       key = "LimitsPoint";
     }
     : retirement_button { 
       fixed_width=true;
       width= 5;
-      label ="µØÖÊ¹¹Ôì";
+      label ="åœ°è´¨æ„é€ ";
       key = "StructurePoint";
     }
   }

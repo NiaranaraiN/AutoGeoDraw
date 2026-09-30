@@ -31,7 +31,7 @@
 
 
                                            
-(defun get_coorx_list(pline_set / pline_index set_length result) "»ñÈ¡¸ø¶¨ÇúÏßµÄx×ø±ê£¬²¢×é³É¼¯ºÏpline_coorx" "¶àÏßÆğµãºÍÖÕµã×ø±êµÄÁĞ±í"
+(defun get_coorx_list(pline_set / pline_index set_length result) "è·å–ç»™å®šæ›²çº¿çš„xåæ ‡ï¼Œå¹¶ç»„æˆé›†åˆpline_coorx" "å¤šçº¿èµ·ç‚¹å’Œç»ˆç‚¹åæ ‡çš„åˆ—è¡¨"
 	(setq pline_index 0 result '())
   	(if pline_set
 		(progn
@@ -49,11 +49,11 @@
 
                               
 (defun cuntain_start_point_coordinate (curtain_line_set get_method / coordinate_list item_coordinate item_index set_length result )
-	"ÌáÈ¡Ïß¶ÎÑ¡Ôñ¼¯ÄÚµÄÆğµã×ø±êÖµ,
-	Èç¹û'get_method'Îª'X'ÔòÌáÈ¡X×ø±êÖµ£¬
-	Èç¹û'get_method'Îª'Y'ÔòÌáÈ¡Y×ø±êÖµ£¬
+	"æå–çº¿æ®µé€‰æ‹©é›†å†…çš„èµ·ç‚¹åæ ‡å€¼,
+	å¦‚æœ'get_method'ä¸º'X'åˆ™æå–Xåæ ‡å€¼ï¼Œ
+	å¦‚æœ'get_method'ä¸º'Y'åˆ™æå–Yåæ ‡å€¼ï¼Œ
 	" 
-	"@returns ·µ»ØÒ»¸öÁĞ±í£¬°üº¬ËùÓĞX»òY×ø±êÖµ"
+	"@returns è¿”å›ä¸€ä¸ªåˆ—è¡¨ï¼ŒåŒ…å«æ‰€æœ‰Xæˆ–Yåæ ‡å€¼"
 	    
 		(setq set_length (sslength curtain_line_set))
 		(setq  item_index 0)             
@@ -73,14 +73,14 @@
 )
 
                                                                                                                                                                       
-(defun caculate_real_data (raw_data consult_data consult_actual_value actual_scale / result )  "ÊäÈëĞèÒª¼ÆËãµãµÄYÖµ¡¢²ÎÕÕµãµÄYÖµ¡¢²ÎÕÕµãÊµ¼Ê×ø±êÖµ¼°Í¼Ö½±ÈÀı£¬¼ÆËã³ö¼ÆËãµãµÄ¸ß³ÌÖµ" "ÕæÊµ¸ß³ÌÖµ" 
+(defun caculate_real_data (raw_data consult_data consult_actual_value actual_scale / result )  "è¾“å…¥éœ€è¦è®¡ç®—ç‚¹çš„Yå€¼ã€å‚ç…§ç‚¹çš„Yå€¼ã€å‚ç…§ç‚¹å®é™…åæ ‡å€¼åŠå›¾çº¸æ¯”ä¾‹ï¼Œè®¡ç®—å‡ºè®¡ç®—ç‚¹çš„é«˜ç¨‹å€¼" "çœŸå®é«˜ç¨‹å€¼" 
 	(setq result (+ consult_actual_value (* (- raw_data consult_data) (/ actual_scale 1000) ) ) )
   (setq result (read (rtos result 2 *result_precison*)))
   result
 )
                                    
                                                                                                         
-(defun get_inter_point (pline1 pline2 / obj_inter_result result obj_1 obj_2) "ÇóÁ½¸ö²¼ÏßµÄ½»µã¡£²¢·µ»Ø½»µã×ø±êÖµ£¨±¾³ÌĞòÖĞá¡Ä»¹à½¬Óë¸÷½çÏŞ½»µã½öÓĞ0~1¸öÖµ£¬ËùÒÔ²»¿¼ÂÇ¶à¸ö½»µãµÄÎÊÌâ¡£" "·µ»Ø½»µã×ø±ê£¬ÁĞ±íĞÍ"
+(defun get_inter_point (pline1 pline2 / obj_inter_result result obj_1 obj_2) "æ±‚ä¸¤ä¸ªå¸ƒçº¿çš„äº¤ç‚¹ã€‚å¹¶è¿”å›äº¤ç‚¹åæ ‡å€¼ï¼ˆæœ¬ç¨‹åºä¸­å¸·å¹•çŒæµ†ä¸å„ç•Œé™äº¤ç‚¹ä»…æœ‰0~1ä¸ªå€¼ï¼Œæ‰€ä»¥ä¸è€ƒè™‘å¤šä¸ªäº¤ç‚¹çš„é—®é¢˜ã€‚" "è¿”å›äº¤ç‚¹åæ ‡ï¼Œåˆ—è¡¨å‹"
   (setq obj_1 (vlax-ename->vla-object pline1))
   (setq obj_2 (vlax-ename->vla-object pline2))
   (setq obj_inter_result (vlax-variant-value (vlax-invoke-method obj_1 'IntersectWith obj_2 0)))
@@ -90,7 +90,7 @@
  
 
                                                                  
-(defun stratum_inter (curtain_bore curtain_bore_coorx pline_set pline_set_coorx_list / inter_point stratum_line pline_coorx_min pline_coorx_max set_length set_index result) "ÇóÒ»Ìõ¶à¶ÎÏßÓëÒ»×é¶à¶ÎÏßÊÇ·ñ´æÔÚ½»µã£¬Èç¹û´æÔÚ£¬È¡µÃ¸ÃµãµÄ×ø±êÖµ" "µã×ø±êÖµ"
+(defun stratum_inter (curtain_bore curtain_bore_coorx pline_set pline_set_coorx_list / inter_point stratum_line pline_coorx_min pline_coorx_max set_length set_index result) "æ±‚ä¸€æ¡å¤šæ®µçº¿ä¸ä¸€ç»„å¤šæ®µçº¿æ˜¯å¦å­˜åœ¨äº¤ç‚¹ï¼Œå¦‚æœå­˜åœ¨ï¼Œå–å¾—è¯¥ç‚¹çš„åæ ‡å€¼" "ç‚¹åæ ‡å€¼"
 	(setq set_length (sslength pline_set))
 	(setq set_index 0 result '(0 0 0))
 	(while (< set_index set_length)
@@ -137,7 +137,7 @@
 
                                                
 (defun remove_overlap_length ( arg1 arg2 arg3 / length_list list_index_list value_max value_mid value_min remove_overlap_list i item_value item result)
-  "È¥³ıÍÁÌå¡¢°ÓÌå¡¢íÅ½ø³ßÍ¬Ê±´æÔÚÊ±ÉÏ²¿ÖØ¸´µÄ²¿·Ö£¬strtum_length¼ÆËãµÄÊÇ´Ó¿×¿ÚÖÁ²ãµ×ÏŞ,ËùÒÔÈç¹ûÍ¬Ê±´æÔÚ£¬ÉÏ²¿·ÖÓĞÖØ¸´µÄ¡£Ë¼Â·ÔòÊÇÈıÕß¶Ô±ÈÅÅĞò£¬×î´ó-´Î´ó£¬´Î´ó-×îĞ¡£¬µÃµ½×îĞÂµÄÊı¾İ" 
+  "å»é™¤åœŸä½“ã€åä½“ã€ç ¼è¿›å°ºåŒæ—¶å­˜åœ¨æ—¶ä¸Šéƒ¨é‡å¤çš„éƒ¨åˆ†ï¼Œstrtum_lengthè®¡ç®—çš„æ˜¯ä»å­”å£è‡³å±‚åº•é™,æ‰€ä»¥å¦‚æœåŒæ—¶å­˜åœ¨ï¼Œä¸Šéƒ¨åˆ†æœ‰é‡å¤çš„ã€‚æ€è·¯åˆ™æ˜¯ä¸‰è€…å¯¹æ¯”æ’åºï¼Œæœ€å¤§-æ¬¡å¤§ï¼Œæ¬¡å¤§-æœ€å°ï¼Œå¾—åˆ°æœ€æ–°çš„æ•°æ®" 
   ""
   (setq length_list (list arg1 arg2 arg3))
   (setq list_index_list (vl-sort-i length_list '>))                                
@@ -159,10 +159,10 @@
 
 
                  
-(defun print_value_prop (get_value / ) "º¯Êı¹¦ÄÜËµÃ÷" "º¯Êı·µ»ØÖµ"
-      (princ "\nÀàĞÍ£º")
+(defun print_value_prop (get_value / ) "å‡½æ•°åŠŸèƒ½è¯´æ˜" "å‡½æ•°è¿”å›å€¼"
+      (princ "\nç±»å‹ï¼š")
       (princ (type get_value))
-      (princ "\nÊıÖµ£º")
+      (princ "\næ•°å€¼ï¼š")
       (princ (rtos get_value))
       (princ "\n ------------")
       (princ "\n")
@@ -265,89 +265,89 @@
   (defun botton-action (bottonId / ss_length)
     (cond 
       ( (= bottonId 3)                 
-        (princ "\n Ñ¡Ôñá¡Ä»¹à½¬Ïß:")
+        (princ "\n é€‰æ‹©å¸·å¹•çŒæµ†çº¿:")
         (setq ss_curtain (ssget))
         (setq ss_length (sslength ss_curtain))
         (if (= ss_length 0)
-          (setq SelectCurtainStatus_value "ÎŞÑ¡Ôñ")
-          (setq SelectCurtainStatus_value (strcat "ÒÑÑ¡" (itoa ss_length)))
+          (setq SelectCurtainStatus_value "æ— é€‰æ‹©")
+          (setq SelectCurtainStatus_value (strcat "å·²é€‰" (itoa ss_length)))
         )
       )
 
       ( (= bottonId 4) 
-        (princ "\n Ñ¡ÔñÕı³£ĞîË®Î»Ïß:")
+        (princ "\n é€‰æ‹©æ­£å¸¸è“„æ°´ä½çº¿:")
         (setq ss_water_level (ssget))
         (setq ss_length (sslength ss_water_level))
         (if (= ss_length 0)
-          (setq SelectWaterLevelStatus_value "ÎŞÑ¡Ôñ")
-          (setq SelectWaterLevelStatus_value (strcat "ÒÑÑ¡" (itoa ss_length)))
+          (setq SelectWaterLevelStatus_value "æ— é€‰æ‹©")
+          (setq SelectWaterLevelStatus_value (strcat "å·²é€‰" (itoa ss_length)))
         )
       )
 
 
       ((= bottonId 5)
-        (princ "\n Ñ¡ÔñµØ±íÃæÏß:")
+        (princ "\n é€‰æ‹©åœ°è¡¨é¢çº¿:")
         (setq ss_ground (ssget))
         (setq ss_length (sslength ss_ground))
         (if (= ss_length 0)
-          (setq SelectGroundStatus_value "ÎŞÑ¡Ôñ")
-          (setq SelectGroundStatus_value (strcat "ÒÑÑ¡" (itoa ss_length)))
+          (setq SelectGroundStatus_value "æ— é€‰æ‹©")
+          (setq SelectGroundStatus_value (strcat "å·²é€‰" (itoa ss_length)))
         )      
       )
 
 
       ((= bottonId 6)
-        (princ "\n Ñ¡Ôñ¸²¸Ç²ãÓë»ùÑÒ·Ö½çÏß:")
+        (princ "\n é€‰æ‹©è¦†ç›–å±‚ä¸åŸºå²©åˆ†ç•Œçº¿:")
         (setq ss_soil (ssget))
         (setq ss_length (sslength ss_soil))
         (if (= ss_length 0)
-          (setq SelectSoilStatus_value "ÎŞÑ¡Ôñ")
-          (setq SelectSoilStatus_value (strcat "ÒÑÑ¡" (itoa ss_length)))
+          (setq SelectSoilStatus_value "æ— é€‰æ‹©")
+          (setq SelectSoilStatus_value (strcat "å·²é€‰" (itoa ss_length)))
         )     
       )
 
 
       ((= bottonId 7)
-        (princ "\n Ñ¡Ôñ°Ó¶¥Ïß:")
+        (princ "\n é€‰æ‹©åé¡¶çº¿:")
         (setq ss_dam_top (ssget))
         (setq ss_length (sslength ss_dam_top))
         (if (= ss_length 0)
-          (setq SelectDamTopStatus_value "ÎŞÑ¡Ôñ")
-          (setq SelectDamTopStatus_value (strcat "ÒÑÑ¡" (itoa ss_length)))
+          (setq SelectDamTopStatus_value "æ— é€‰æ‹©")
+          (setq SelectDamTopStatus_value (strcat "å·²é€‰" (itoa ss_length)))
         )        
       )
 
 
       ((= bottonId 8)
-        (princ "\n Ñ¡Ôñ°Óµ×Ïß:")
+        (princ "\n é€‰æ‹©ååº•çº¿:")
         (setq ss_dam_bottom (ssget))
         (setq ss_length (sslength ss_dam_bottom))
         (if (= ss_length 0)
-          (setq SelectDamBottomStatus_value "ÎŞÑ¡Ôñ")
-          (setq SelectDamBottomStatus_value (strcat "ÒÑÑ¡" (itoa ss_length)))
+          (setq SelectDamBottomStatus_value "æ— é€‰æ‹©")
+          (setq SelectDamBottomStatus_value (strcat "å·²é€‰" (itoa ss_length)))
         )            
       )
 
 
       ((= bottonId 9)
-        (princ "\n Ñ¡ÔñÆäËü·Ö½çÏß:")
+        (princ "\n é€‰æ‹©å…¶å®ƒåˆ†ç•Œçº¿:")
         (setq ss_concrete (ssget))
         (setq ss_length (sslength ss_concrete))
         (if (= ss_length 0)
-          (setq SelectConcreteStatus_value "ÎŞÑ¡Ôñ")
-          (setq SelectConcreteStatus_value (strcat "ÒÑÑ¡" (itoa ss_length)))
+          (setq SelectConcreteStatus_value "æ— é€‰æ‹©")
+          (setq SelectConcreteStatus_value (strcat "å·²é€‰" (itoa ss_length)))
         )                   
       )
 
 
       ((= bottonId 10)      
-        (setq SelectCurtainStatus_value "ÎŞÑ¡Ôñ")
-        (setq SelectWaterLevelStatus_value "ÎŞÑ¡Ôñ")
-        (setq SSelectGroundStatus_value "ÎŞÑ¡Ôñ")
-        (setq SelectSoilStatus_value "ÎŞÑ¡Ôñ")
-        (setq SelectDamTopStatus_value "ÎŞÑ¡Ôñ")
-        (setq SelectDamBottomStatus_value "ÎŞÑ¡Ôñ")
-        (setq SelectConcreteStatus_value "ÎŞÑ¡Ôñ")
+        (setq SelectCurtainStatus_value "æ— é€‰æ‹©")
+        (setq SelectWaterLevelStatus_value "æ— é€‰æ‹©")
+        (setq SSelectGroundStatus_value "æ— é€‰æ‹©")
+        (setq SelectSoilStatus_value "æ— é€‰æ‹©")
+        (setq SelectDamTopStatus_value "æ— é€‰æ‹©")
+        (setq SelectDamBottomStatus_value "æ— é€‰æ‹©")
+        (setq SelectConcreteStatus_value "æ— é€‰æ‹©")
         (setq WaterLevelElevationInput_value "")
         (setq drawingScaleInput_value "")
         (setq ShowSavePath_value "C:\\")
@@ -356,7 +356,7 @@
 
 
       ((= bottonId 11)
-        (setq SAVE_PATH (getfiled "Ñ¡ÔñÊı¾İ±£´æÎ»ÖÃ" ShowSavePath_value "csv" 1))
+        (setq SAVE_PATH (getfiled "é€‰æ‹©æ•°æ®ä¿å­˜ä½ç½®" ShowSavePath_value "csv" 1))
         (setq ShowSavePath_value SAVE_PATH)
       )
     )
@@ -494,7 +494,7 @@
 	                         
 	                                                               
 	(setq csv_file (open SAVE_PATH "w"))
-	(write-line "×ê¿×±àºÅ,¿×¿Ú¸ß³Ì,¿×µ×¸ß³Ì,¿×Éî,ÍÁ²ã½ø³ß,°ÓÌå½ø³ß,íÅ½ø³ß,»ùÑÒ½ø³ß,ÓĞĞ§½ø³ß,ÎŞĞ§½ø³ß" csv_file) 
+	(write-line "é’»å­”ç¼–å·,å­”å£é«˜ç¨‹,å­”åº•é«˜ç¨‹,å­”æ·±,åœŸå±‚è¿›å°º,åä½“è¿›å°º,ç ¼è¿›å°º,åŸºå²©è¿›å°º,æœ‰æ•ˆè¿›å°º,æ— æ•ˆè¿›å°º" csv_file) 
   
                                
 	(setq ground_coorx_list (get_coorx_list ss_ground))              
@@ -552,7 +552,7 @@
   	)
         
 	(close csv_file)
-  (alert (strcat "½ø³ßÍ³¼ÆÍê³É£¡ÒÑ±£´æÔÚ<" SAVE_PATH ">"))
+  (alert (strcat "è¿›å°ºç»Ÿè®¡å®Œæˆï¼å·²ä¿å­˜åœ¨<" SAVE_PATH ">"))
   (foreach key keyList
     (setq (eval (read (strcat key "_value"))) nil)
   )
@@ -569,10 +569,10 @@
 		(mapcar 'eval e_lst)
 			(if (not (member
 									msg
-									'(nil "º¯Êı±»È¡Ïû" ";´íÎó:quit / exit abort")
+									'(nil "å‡½æ•°è¢«å–æ¶ˆ" ";é”™è¯¯:quit / exit abort")
 									)
 						)
-				(princ (strcat ";´íÎó:" msg))
+				(princ (strcat ";é”™è¯¯:" msg))
 			)
 	)
 	(command "undo" "be")

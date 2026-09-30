@@ -22,7 +22,7 @@
         (setq __get_post.any (vlax-create-object "Msxml2.XMLHTTP"))
         (vlax-invoke-method __get_post.any "open" "get" self.domain.str "false")
         (if (vl-catch-all-error-p (vl-catch-all-apply 'vlax-invoke-method (list __get_post.any "send")))
-                (princ "\n&micro;¡À&Ccedil;¡ã&Icirc;&THORN;&Iacute;&oslash;&Acirc;&ccedil;&Aacute;&not;&frac12;&Oacute;")
+                (princ "\n&micro;Â±&Ccedil;Â°&Icirc;&THORN;&Iacute;&oslash;&Acirc;&ccedil;&Aacute;&not;&frac12;&Oacute;")
                 (setq __respose_result.any (vlax-get-property __get_post.any "responseText"))
         )
         (vlax-release-object __get_post.any)
@@ -32,8 +32,8 @@
 
                                        
 (defun vls-Modify-SystemVariant (/ __modified_varlist.list)
-  "ÉèÖÃ³ÌĞòÔËĞĞÊ±ÒªĞŞ¸ÄµÄÏµÍ³±äÁ¿¼°±äÁ¿Öµ" 
-  "·µ»ØÏµÍ³±äÁ¿Ãû³Æ-ÖµµÄÒ»¸öÁĞ±í" 
+  "è®¾ç½®ç¨‹åºè¿è¡Œæ—¶è¦ä¿®æ”¹çš„ç³»ç»Ÿå˜é‡åŠå˜é‡å€¼" 
+  "è¿”å›ç³»ç»Ÿå˜é‡åç§°-å€¼çš„ä¸€ä¸ªåˆ—è¡¨" 
   (setq __modified_varlist.list
     (list 
       (list "DIMZIN" 0)                   

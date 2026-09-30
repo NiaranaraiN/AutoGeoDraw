@@ -36,7 +36,7 @@
   (setq __is_success  0 __section_line nil)
   (setvar "osmode" 1573)
   (while (= __is_success 0)
-		(setq __section_line (car (entsel "Ñ¡ÔñÆÊÃæÏß£º")))
+		(setq __section_line (car (entsel "é€‰æ‹©å‰–é¢çº¿ï¼š")))
     (if (or (= (cdr (assoc 0 (entget __section_line))) "LWPOLYLINE") (= (cdr (assoc 0 (entget __section_line))) "POLYLINE") (= (cdr (assoc 0 (entget __section_line))) "LINE") )
 			(progn
 				(setq __obj_section_line (vlax-ename->vla-object __section_line))
@@ -46,7 +46,7 @@
   (setvar "osmode" 14335)
   (setq __is_success  0 )
   (while (= __is_success 0)
-		(setq __section_point (getpoint "Ñ¡ÔñÆÊÃæÏßÉÏµÄµã£º"))
+		(setq __section_point (getpoint "é€‰æ‹©å‰–é¢çº¿ä¸Šçš„ç‚¹ï¼š"))
 		(setq __at_section_line_distance (vlax-curve-getdistatpoint __obj_section_line __section_point))
 		                     
 		(if __at_section_line_distance
@@ -90,14 +90,14 @@
                                                
 	                                                               
 	                                                                
-  (alert (strcat "×®ºÅ£º" (rtos __section_distance 2 2) "\n¸ß³Ì:" (rtos __section_y 2 2) "" ))
+  (alert (strcat "æ¡©å·ï¼š" (rtos __section_distance 2 2) "\né«˜ç¨‹:" (rtos __section_y 2 2) "" ))
 )
 
 (defun dszd_man_program ( / __is_success __section_line __obj_section_line __section_start_point __distance_find __get_distance_x __section_max_point __section_min_point __max_y __min_y __highest_point __lowest_point __obj_temp_line __temp_line_dxf __zh_insert_point __inter_points_list  )
   (setq __is_success  0 __section_line nil)
   (setvar "osmode" 1573)
   (while (= __is_success 0)
-		(setq __section_line (car (entsel "Ñ¡ÔñÆÊÃæÏß£º")))
+		(setq __section_line (car (entsel "é€‰æ‹©å‰–é¢çº¿ï¼š")))
     (if (or (= (cdr (assoc 0 (entget __section_line))) "LWPOLYLINE") (= (cdr (assoc 0 (entget __section_line))) "POLYLINE") (= (cdr (assoc 0 (entget __section_line))) "LINE") )
 			(progn
 				(setq __obj_section_line (vlax-ename->vla-object __section_line))
@@ -105,7 +105,7 @@
 				(setq __is_success 1)
       ))
 	)
-	(setq __distance_find (getreal "²éÕÒ×®ºÅÎ»ÖÃ£º"))
+	(setq __distance_find (getreal "æŸ¥æ‰¾æ¡©å·ä½ç½®ï¼š"))
   (setq __get_distance_x (+ __distance_find (car __section_start_point)))
 	(vla-getboundingbox __obj_section_line '__section_max_point '__section_min_point)
 	(setq __section_max_point (vlax-safearray->list __section_max_point))
@@ -137,7 +137,7 @@
 
 (defun dgc_program ( / __section_point __elevation_point __elevation_value )
 	(setvar "osmode" 14335)
-  (setq __section_point (getpoint "Ñ¡Ôñ¸ß³Ìµã£º"))
+  (setq __section_point (getpoint "é€‰æ‹©é«˜ç¨‹ç‚¹ï¼š"))
 	(setq __elevation_point (list
 		(+ 1 (car __section_point))
 		(+ 1 (cadr __section_point))
@@ -153,7 +153,7 @@
   (setq __is_success  0 __plan_line nil)
   (setvar "osmode" 1573)
   (while (= __is_success 0)
-		(setq __plan_line (car (entsel "Ñ¡ÔñÆ½ÃæÍ¼ÉÏµÄÆÊÃæÏß£º")))
+		(setq __plan_line (car (entsel "é€‰æ‹©å¹³é¢å›¾ä¸Šçš„å‰–é¢çº¿ï¼š")))
     (if (or (= (cdr (assoc 0 (entget __plan_line))) "LWPOLYLINE") (= (cdr (assoc 0 (entget __plan_line))) "POLYLINE") (= (cdr (assoc 0 (entget __plan_line))) "LINE") )
 			(progn
 				(setq __obj_plan_line (vlax-ename->vla-object __plan_line))
@@ -163,7 +163,7 @@
   (setvar "osmode" 14335)
   (setq __is_success  0 )
   (while (= __is_success 0)
-		(setq __plan_point (getpoint "Ñ¡ÔñÆ½ÃæÆÊÏßÉÏµÄµã£º"))
+		(setq __plan_point (getpoint "é€‰æ‹©å¹³é¢å‰–çº¿ä¸Šçš„ç‚¹ï¼š"))
 		(setq __at_plan_line_distance (vlax-curve-getdistatpoint __obj_plan_line __plan_point))
 		                     
 		(if __at_plan_line_distance
@@ -191,18 +191,18 @@
 	(setq __is_success  0 __plan_line nil)
   (setvar "osmode" 1573)
   (while (= __is_success 0)
-		(setq __plan_line (car (entsel "Ñ¡ÔñÆÊÃæÏß£º")))
+		(setq __plan_line (car (entsel "é€‰æ‹©å‰–é¢çº¿ï¼š")))
     (if (or (= (cdr (assoc 0 (entget __plan_line))) "LWPOLYLINE") (= (cdr (assoc 0 (entget __plan_line))) "POLYLINE") (= (cdr (assoc 0 (entget __plan_line))) "LINE") )
 			(progn
 				(setq __obj_plan_line (vlax-ename->vla-object __plan_line))
 				(setq __is_success 1)
       ))
 	)
-  (setq __distance_find (getreal "²éÕÒ×®ºÅÎ»ÖÃ£º"))
+  (setq __distance_find (getreal "æŸ¥æ‰¾æ¡©å·ä½ç½®ï¼š"))
   (setq __max_dist (vlax-curve-getDistAtPoint __obj_plan_line (vlax-curve-getEndPoint __obj_plan_line)))
   (PRINC __MAX_DIST)
   (if (> __distance_find __max_dist)
-		(princ "³¬³öÆÊÏß³¤¶È£¡")
+		(princ "è¶…å‡ºå‰–çº¿é•¿åº¦ï¼")
 		(progn
       (setq __finded_point (vlax-curve-getPointAtDist __obj_plan_line __distance_find))
 			(setq __station_point_online (list
@@ -236,7 +236,7 @@
           (cons 10 _text_point)         
           (cons 40 2.5)           
           (cons 1 _text_txt)           
-          (cons 7 "ËÎÌå2.5")           
+          (cons 7 "å®‹ä½“2.5")           
           (cons 8 "Temp")       
           (cons 62 51)       
           (cons 50 _text_angle)           
@@ -295,10 +295,10 @@
 	(mapcar 'eval e_lst)
 			(if (not (member
 									msg
-									'(nil "º¯Êı±»È¡Ïû" ";´íÎó:quit / exit abort")
+									'(nil "å‡½æ•°è¢«å–æ¶ˆ" ";é”™è¯¯:quit / exit abort")
 									)
 						)
-				(princ (strcat ";´íÎó:" msg))
+				(princ (strcat ";é”™è¯¯:" msg))
 			)
 	)
 	(command "undo" "be")
@@ -320,10 +320,10 @@
 	(mapcar 'eval e_lst)
 			(if (not (member
 									msg
-									'(nil "º¯Êı±»È¡Ïû" ";´íÎó:quit / exit abort")
+									'(nil "å‡½æ•°è¢«å–æ¶ˆ" ";é”™è¯¯:quit / exit abort")
 									)
 						)
-				(princ (strcat ";´íÎó:" msg))
+				(princ (strcat ";é”™è¯¯:" msg))
 			)
 	)
 	(command "undo" "be")
@@ -345,10 +345,10 @@
 	(mapcar 'eval e_lst)
 			(if (not (member
 									msg
-									'(nil "º¯Êı±»È¡Ïû" ";´íÎó:quit / exit abort")
+									'(nil "å‡½æ•°è¢«å–æ¶ˆ" ";é”™è¯¯:quit / exit abort")
 									)
 						)
-				(princ (strcat ";´íÎó:" msg))
+				(princ (strcat ";é”™è¯¯:" msg))
 			)
 	)
 	(command "undo" "be")
@@ -370,10 +370,10 @@
 	(mapcar 'eval e_lst)
 			(if (not (member
 									msg
-									'(nil "º¯Êı±»È¡Ïû" ";´íÎó:quit / exit abort")
+									'(nil "å‡½æ•°è¢«å–æ¶ˆ" ";é”™è¯¯:quit / exit abort")
 									)
 						)
-				(princ (strcat ";´íÎó:" msg))
+				(princ (strcat ";é”™è¯¯:" msg))
 			)
 	)
 	(command "undo" "be")
@@ -395,10 +395,10 @@
 	(mapcar 'eval e_lst)
 			(if (not (member
 									msg
-									'(nil "º¯Êı±»È¡Ïû" ";´íÎó:quit / exit abort")
+									'(nil "å‡½æ•°è¢«å–æ¶ˆ" ";é”™è¯¯:quit / exit abort")
 									)
 						)
-				(princ (strcat ";´íÎó:" msg))
+				(princ (strcat ";é”™è¯¯:" msg))
 			)
 	)
 	(command "undo" "be")

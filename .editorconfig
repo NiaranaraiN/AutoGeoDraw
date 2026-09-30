@@ -1,0 +1,4 @@
+root = true
+
+[*.{lsp,dcl}]
+charset = utf-8

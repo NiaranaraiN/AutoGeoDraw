@@ -29,7 +29,7 @@
                                               
 
 (defun C:SOH-section-Order-Help ( / )
-  (alert (strcat "ÃüÁî(SOH)£º\n" "³õÊ¼ÉèÖÃ£º    InitSectionVariants\n" "ÖØÖÃÊı¾İ£º    ResetAllValue\n" "Ñ¡ÆÊÃæÏßµã£ºAddSectionPoint\n" "Ñ¡Æ½ÃæÏßµã£ºAddPlanPoint\n"  "ÆÊÃæ->Æ½Ãæ£ºFDSA-find_section_to_plan \n" "Æ½Ãæ->ÆÊÃæ£ºFDAS-find_plan_to_section \n" "±¸·İÊı¾İ£º    BakupSectionData\n" "»Ö¸´Êı¾İ £º    ImportSectionData\n" "É¾³ıÉÏÒ»µã £º    Remove-last-point\n" "É¾³ıµãÊı¾İ £º    RSTRemoveSectionPoint\n" ))
+  (alert (strcat "å‘½ä»¤(SOH)ï¼š\n" "åˆå§‹è®¾ç½®ï¼š    InitSectionVariants\n" "é‡ç½®æ•°æ®ï¼š    ResetAllValue\n" "é€‰å‰–é¢çº¿ç‚¹ï¼šAddSectionPoint\n" "é€‰å¹³é¢çº¿ç‚¹ï¼šAddPlanPoint\n"  "å‰–é¢->å¹³é¢ï¼šFDSA-find_section_to_plan \n" "å¹³é¢->å‰–é¢ï¼šFDAS-find_plan_to_section \n" "å¤‡ä»½æ•°æ®ï¼š    BakupSectionData\n" "æ¢å¤æ•°æ® ï¼š    ImportSectionData\n" "åˆ é™¤ä¸Šä¸€ç‚¹ ï¼š    Remove-last-point\n" "åˆ é™¤ç‚¹æ•°æ® ï¼š    RSTRemoveSectionPoint\n" ))
 	
 )
 
@@ -42,7 +42,7 @@
   (setq __curr_point_x.real (car self.on_ground_point.pt))
   (setq __strata_height.real (cadr self.on_ground_point.pt))        
   (setq __height_index.int  0 __height_list_length.int (length self.strata_height_list.list))
-  (setq *set_line_layer* "Geo_ËµÃ÷_²»´òÓ¡")
+  (setq *set_line_layer* "Geo_è¯´æ˜_ä¸æ‰“å°")
   (while (< __height_index.int __height_list_length.int)
 		(setq __strata_height.real (- __strata_height.real (* (nth __height_index.int self.strata_height_list.list) *y_scale*)	))
                                                    
@@ -119,7 +119,7 @@
   (setq __point_at_line.pt nil)
   (while (not __point_at_line.pt)             
     (setvar "osmode" 14335)
-		(setq __curr_point.pt (getpoint "Ñ¡ÔñÆ½Ãæ»òÆÊÃæÍ¼ÉÏµÄµã£º"))
+		(setq __curr_point.pt (getpoint "é€‰æ‹©å¹³é¢æˆ–å‰–é¢å›¾ä¸Šçš„ç‚¹ï¼š"))
 		(setvar "osmode" 0)
     (setq __at_plan_line_distance.real (vlax-curve-getdistatpoint *plan_line_obj* __curr_point.pt))
     (if __at_plan_line_distance.real
@@ -184,7 +184,7 @@
   (setq __point_at_line.pt nil)
   (while (not __point_at_line.pt)
 		(setvar "osmode" 14335)
-		(setq __curr_point.pt (getpoint "Ñ¡ÔñÆ½ÃæÍ¼ÉÏµÄµã£º"))
+		(setq __curr_point.pt (getpoint "é€‰æ‹©å¹³é¢å›¾ä¸Šçš„ç‚¹ï¼š"))
 		(setvar "osmode" 0)
 		(if (setq __point_at_line.pt (vlax-curve-getdistatpoint *plan_line_obj* __curr_point.pt))
 			(progn
@@ -254,8 +254,8 @@
 
 (defun import_section_data ( / __split_path.str __path_index.int __recovery_file.file __data_index.int __temp_file.file __temp_data.any __temp_point_str.pt  __bak_path.str __only_path.str __line_data.ename __temp_point.pt)          
   (reset_all_value)
-  (alert "¡¾µ¼Èë»Ö¸´¡¿Êı¾İ")
-	(setq __bak_path.str (getfiled "µ¼ÈëÆÊÃæÊı¾İ" *open_path* "vlsdata" 16))
+  (alert "ã€å¯¼å…¥æ¢å¤ã€‘æ•°æ®")
+	(setq __bak_path.str (getfiled "å¯¼å…¥å‰–é¢æ•°æ®" *open_path* "vlsdata" 16))
   (setq __split_path.str (vls-string->list __bak_path.str "\\"))
   (setq __only_path.str nil __path_index.int 0)
   (while (< __path_index.int (1- (length __split_path.str)))
@@ -288,12 +288,12 @@
 	)
   (close __temp_file.file)
   (setq *open_path* __bak_path.str)
-  (alert "»Ö¸´³É¹¦")
+  (alert "æ¢å¤æˆåŠŸ")
 )
 
 (defun bakup_section_data ( / __split_path.str __path_index.int __bakup_var.any __bakup_file.file __data_index.int __temp_file.file __point_data.pt __bak_path.str __only_path.str __point_data.pt)                                                              
-	(alert "¡¾±¸·İ¡¿Êı¾İ")
-	(setq __bak_path.str (getfiled "±¸·İÆÊÃæÊı¾İ" *open_path* "vlsdata" 33))
+	(alert "ã€å¤‡ä»½ã€‘æ•°æ®")
+	(setq __bak_path.str (getfiled "å¤‡ä»½å‰–é¢æ•°æ®" *open_path* "vlsdata" 33))
   (setq __split_path.str (vls-string->list __bak_path.str "\\"))
   (setq __only_path.str nil __path_index.int 0)
   (while (< __path_index.int (1- (length __split_path.str)))
@@ -328,7 +328,7 @@
     )
     (close __temp_file.file)
   (setq *open_path* __bak_path.str)
-  (alert "±¸·İÍê³É")
+  (alert "å¤‡ä»½å®Œæˆ")
 )
 
                                                       
@@ -379,7 +379,7 @@
   (foreach __one_var.any  __reset_points_list.list
 		(set (read __one_var.any) nil)
   )
-  (alert "³õÊ¼»¯³É¹¦")
+  (alert "åˆå§‹åŒ–æˆåŠŸ")
                           
 )
 
@@ -458,7 +458,7 @@
 	(setq __point_at_line.pt nil)
 	(while (not __point_at_line.pt)                                                    
 		(setvar "osmode" 14335)
-		(setq __curr_point.pt (getpoint "Ñ¡ÔñÒªÉ¾³ıµÄµã£º"))
+		(setq __curr_point.pt (getpoint "é€‰æ‹©è¦åˆ é™¤çš„ç‚¹ï¼š"))
 		(setvar "osmode" 0)
 		(setq __at_plan_line_distance.real (vlax-curve-getdistatpoint *plan_line_obj* __curr_point.pt))
 		(if __at_plan_line_distance.real
@@ -483,7 +483,7 @@
 	)
   (setq __remove_index.int (get_remove_element_index *ground_points* __at_section_line_point.pt))
   (if (not __remove_index.int)
-		(alert "³õÊ¼Î´ÕÒµ½£¬É¾³ıÍê³É£¡")
+		(alert "åˆå§‹æœªæ‰¾åˆ°ï¼Œåˆ é™¤å®Œæˆï¼")
 		(progn
 			(setq __remove_point.pt (nth __remove_index.int *ground_points*))
 			(setq *ground_points* (vl-remove __remove_point.pt *ground_points*))
@@ -497,7 +497,7 @@
         )
 				(setq __strata_index.int (1+ __strata_index.int))
 			)
-    	(alert "ÒÑÕÒµ½£¬É¾³ıÍê³É£¡")
+    	(alert "å·²æ‰¾åˆ°ï¼Œåˆ é™¤å®Œæˆï¼")
     )
 	)
 	                 
@@ -541,7 +541,7 @@
   (setq __point_at_line.pt nil)
   (while (not __point_at_line.pt)             
     (setvar "osmode" 14335)
-		(setq __curr_point.pt (getpoint "Ñ¡ÔñÆ½Ãæ»òÆÊÃæÍ¼ÉÏµÄµã£º"))
+		(setq __curr_point.pt (getpoint "é€‰æ‹©å¹³é¢æˆ–å‰–é¢å›¾ä¸Šçš„ç‚¹ï¼š"))
 		(setvar "osmode" 0)
     (setq __at_plan_line_distance.real (vlax-curve-getdistatpoint *plan_line_obj* __curr_point.pt))
     (if __at_plan_line_distance.real
@@ -568,7 +568,7 @@
 	)
   (setq __correct_input.any  nil)
   (while (not __correct_input.any) 
-  	(setq __strata_height_all.real (getstring (strcat "ÊäÈë" (itoa *strata_count*) "²ãÑÒÍÁ²ãºñ¶È£º")))
+  	(setq __strata_height_all.real (getstring (strcat "è¾“å…¥" (itoa *strata_count*) "å±‚å²©åœŸå±‚åšåº¦ï¼š")))
   	(setq __strata_height_list_str.list (vls-string->list __strata_height_all.real ","))
     (setq __correct_input.any (equal (length __strata_height_list_str.list) *strata_count*))
 	)
@@ -605,7 +605,7 @@
 			(draw_all_section_line)
     )
 	)
-  (alert "Ìí¼Ó³É¹¦")
+  (alert "æ·»åŠ æˆåŠŸ")
 )
 
 (defun add_plan_point ( /)                                           
@@ -635,8 +635,8 @@
 
 (defun add_structure_point ( / )         
   (setvar "osmode" 14335)
-	(setq *structure_point* (getpoint "Ñ¡ÔñµØÖÊÌØÕ÷µã£º"))
-  (setq *structure_name* (getstring "ÊäÈëµØÖÊµãÃèÊö"))
+	(setq *structure_point* (getpoint "é€‰æ‹©åœ°è´¨ç‰¹å¾ç‚¹ï¼š"))
+  (setq *structure_name* (getstring "è¾“å…¥åœ°è´¨ç‚¹æè¿°"))
                                                                                         
   (setq *structure_distance* (plan_distance_to_section_distance *structure_point*))
   (setq *structure_name_list*     (append (list *structure_name*) *structure_name_list* ))
@@ -648,12 +648,12 @@
                            
   (setq *strata_count* nil)
   (while (not *strata_count*) 
-  	(setq *strata_count* (getint "ÊäÈëÑÒÍÁ²ã²ãÊı£º"))
+  	(setq *strata_count* (getint "è¾“å…¥å²©åœŸå±‚å±‚æ•°ï¼š"))
 	)
   (setq __is_success.any  0 *plan_line* nil)
   (while (= __is_success.any 0)
     (setvar "osmode" 1573)
-		(setq *plan_line* (car (entsel "Ñ¡ÔñÆ½ÃæÍ¼ÉÏµÄÆÊÃæÏß£º")))
+		(setq *plan_line* (car (entsel "é€‰æ‹©å¹³é¢å›¾ä¸Šçš„å‰–é¢çº¿ï¼š")))
     (if (or (= (cdr (assoc 0 (entget *plan_line*))) "LWPOLYLINE") (= (cdr (assoc 0 (entget *plan_line*))) "POLYLINE") (= (cdr (assoc 0 (entget *plan_line*))) "LINE") )
 			(progn
 				(setq *plan_line_obj* (vlax-ename->vla-object *plan_line*))           
@@ -664,14 +664,14 @@
   (setq __is_success.any 0)
 	(while (= __is_success.any 0)
 		(setvar "osmode" 1573)
-		(setq *plan_start_point* (getpoint "Ñ¡ÔñÆğµã×ø±ê£º"))
-		(setq *plan_end_point* (getpoint "Ñ¡ÔñÖÕµã×ø±ê£º"))
+		(setq *plan_start_point* (getpoint "é€‰æ‹©èµ·ç‚¹åæ ‡ï¼š"))
+		(setq *plan_end_point* (getpoint "é€‰æ‹©ç»ˆç‚¹åæ ‡ï¼š"))
 		(setq *plan_start_distance* (vlax-curve-getdistatpoint *plan_line_obj* *plan_start_point*) )                                 
 		(setq *plan_end_distance* (vlax-curve-getdistatpoint *plan_line_obj* *plan_end_point*) )                                 
 		(if (not (or (not *plan_start_distance*) (not *plan_end_distance*)))
 			(progn
 				(setq *plan_scale* 1000.0)
-				(setq *plan_scale* (getreal "Æ½ÃæÍ¼±ÈÀı1£º<1000>"))
+				(setq *plan_scale* (getreal "å¹³é¢å›¾æ¯”ä¾‹1ï¼š<1000>"))
 				(if (not *plan_scale*) (setq *plan_scale* 1000.0))
 				(setq __is_success.any 1)
 			)
@@ -681,7 +681,7 @@
   (setq __is_success.any  0 *section_line* nil)
   (while (= __is_success.any 0)
 		(setvar "osmode" 14335)
-		(setq *section_line* (car (entsel "Ñ¡ÔñÆÊÃæÍ¼ÉÏµÄÆÊÃæÏß£º")))
+		(setq *section_line* (car (entsel "é€‰æ‹©å‰–é¢å›¾ä¸Šçš„å‰–é¢çº¿ï¼š")))
     (if (or (= (cdr (assoc 0 (entget *section_line*))) "LWPOLYLINE") (= (cdr (assoc 0 (entget *section_line*))) "POLYLINE") (= (cdr (assoc 0 (entget *section_line*))) "LINE"))
 				(setq __is_success.any 1)
     )
@@ -691,13 +691,13 @@
   (setq __is_success.any  0 )
 	(while (= __is_success.any 0)
 		(setvar "osmode" 14335)
-		(setq *section_start_point* (getpoint "Ñ¡ÔñÆğµã×ø±ê£º"))
-		(setq *section_end_point* (getpoint "Ñ¡ÔñÖÕµã×ø±ê£º"))
+		(setq *section_start_point* (getpoint "é€‰æ‹©èµ·ç‚¹åæ ‡ï¼š"))
+		(setq *section_end_point* (getpoint "é€‰æ‹©ç»ˆç‚¹åæ ‡ï¼š"))
 		(setq *section_start_distance* (vlax-curve-getdistatpoint *section_line_obj* *section_start_point*) )                                 
 		(setq *section_end_distance* (vlax-curve-getdistatpoint *section_line_obj* *section_end_point*) )                                 
 		(if (not (or (not *section_start_distance*) (not *section_end_distance*)))
       (progn
-        (setq *section_scale* (getreal "ÆÊÃæÍ¼±ÈÀı1£º<1000>"))
+        (setq *section_scale* (getreal "å‰–é¢å›¾æ¯”ä¾‹1ï¼š<1000>"))
         (if (not *section_scale*) (setq *section_scale* 1000.0))
 				(setq __is_success.any 1)
 
@@ -830,7 +830,7 @@
                                                     
 
 (defun c:test ( / __list_index.int __data_index.int __bak_path.str __only_path.str __line_data.ename __temp_file.file __temp_data.any __temp_point_str.pt __temp_point.pt __point_data.pt __split_path.str __path_index.int __import_file.file __get_variants.list __var_type.int __var_name.str __var_data.any)
-	(setq __bak_path.str (getfiled "±¸·İÆÊÃæÊı¾İ" "W:\\" "vlsdata" 16))
+	(setq __bak_path.str (getfiled "å¤‡ä»½å‰–é¢æ•°æ®" "W:\\" "vlsdata" 16))
   (setq __split_path.str (vls-string->list __bak_path.str "\\"))
   (setq __only_path.str nil __path_index.int 0)
   (while (< __path_index.int (1- (length __split_path.str)))
@@ -894,7 +894,7 @@
 
 (defun draw_all_section_line ( / __list_index.int  __last_line_obj.obj __strata_lines_ohj.str)
   (if (< (length *section_points_x*) 2)
-		(progn (alert "ÆÊÃæµã¹ıÉÙ£¬ÖÁÉÙĞèÒªÁ½µã£¡") (exit) )
+		(progn (alert "å‰–é¢ç‚¹è¿‡å°‘ï¼Œè‡³å°‘éœ€è¦ä¸¤ç‚¹ï¼") (exit) )
   )
   (setq __list_index.int 0)
   (setq *list_sorted_index* (vl-sort-i *section_points_x* <))
@@ -903,7 +903,7 @@
   	(setq __list_index.int (1+ __list_index.int))
 	)
   (strata_points_interpolation)
-  (setq __list_index.int 0 *set_line_layer* "Geo_×ÛºÏ" *set_line_color* 7 *strata_lines_handle* '())
+  (setq __list_index.int 0 *set_line_layer* "Geo_ç»¼åˆ" *set_line_color* 7 *strata_lines_handle* '())
 
   (while (< __list_index.int *strata_count*)
   	(points_draw_polyline (eval (read (strcat "*strata_points_increment_" (itoa __list_index.int) "*"))))

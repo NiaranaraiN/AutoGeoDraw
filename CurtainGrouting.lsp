@@ -54,27 +54,27 @@
                               
 (defun creatcgblock(cirpt cirr)                                 
                 
-  (if (= (tblsearch "block" "Ò»Ğò¿×xCadx") nil)
+  (if (= (tblsearch "block" "ä¸€åºå­”xCadx") nil)
     (progn
     (command "layer" "m" "0" "")
 		(command "circle" cirpt cirr)
 		(setq cgforb (entlast))
-		(command "block" "Ò»Ğò¿×xCadx" cirpt cgforb "")
+		(command "block" "ä¸€åºå­”xCadx" cirpt cgforb "")
 		)
 	)
                 
-	(if (= (tblsearch "block" "ÈıĞò¿×xCadx") nil)
+	(if (= (tblsearch "block" "ä¸‰åºå­”xCadx") nil)
     (progn
     (command "layer" "m" "0" "")
 		(command "circle" cirpt cirr)
 		(setq cgforb (entlast))    
     (command "-hatch" "p" "solid" "s" cgforb "")
     (setq haforb (entlast))      
-		(command "block" "ÈıĞò¿×xCadx" cirpt cgforb haforb "")
+		(command "block" "ä¸‰åºå­”xCadx" cirpt cgforb haforb "")
 		)
 	)
               
-	(if (= (tblsearch "block" "¶şĞò¿×xCadx") nil)
+	(if (= (tblsearch "block" "äºŒåºå­”xCadx") nil)
     (progn
     (command "layer" "m" "0" "")
     (setq pl1st (polar cirpt (* pi 1.5) cirr))
@@ -86,7 +86,7 @@
     (setq arforb (entlast))              
     (command "-hatch" "p" "solid" "s" arforb "")
     (setq haforb (entlast))      
-		(command "block" "¶şĞò¿×xCadx" cirpt cgforb haforb "")
+		(command "block" "äºŒåºå­”xCadx" cirpt cgforb haforb "")
     (entdel arforb)
     (princ)
 		)
@@ -115,16 +115,16 @@
 
 
 (defun start_program ()
-	(princ "\n==========\ná¡Ä»¹à½¬¿××Ô¶¯²¼ÖÃ\nAuthor£ºLiusha.Li\n==========")
-  (setq prop (getreal "\nÇëÊäÈëÍ¼Ö½±ÈÀı£º<1000>"))              
+	(princ "\n==========\nå¸·å¹•çŒæµ†å­”è‡ªåŠ¨å¸ƒç½®\nAuthorï¼šLiusha.Li\n==========")
+  (setq prop (getreal "\nè¯·è¾“å…¥å›¾çº¸æ¯”ä¾‹ï¼š<1000>"))              
   (if (= prop nil) (setq prop 1000))
-  (setq cgline (car (entsel "\nÇëÑ¡Ôñá¡Ä»Ïß£º")))
+  (setq cgline (car (entsel "\nè¯·é€‰æ‹©å¸·å¹•çº¿ï¼š")))
   (while (or (= cgline nil) (and (/= (cdr (assoc 0 (entget cgline))) "LWPOLYLINE") (/= (cdr (assoc 0 (entget cgline))) "LINE")))
-  	(setq cgline (car (entsel "\nÇëÑ¡Ôñá¡Ä»Ïß£º")))
+  	(setq cgline (car (entsel "\nè¯·é€‰æ‹©å¸·å¹•çº¿ï¼š")))
   )
-  (setq startpt (getpoint "\nÇëÑ¡Ôñ¹à½¬¿×Æğµã£º"))
-  (setq endpt (getpoint "\nÇëÑ¡Ôñ¹à½¬¿×ÖÕµã»òá¡Ä»ÏßÖÕµã£º"))
-  (setq cgdis (getreal "\nÇëÊäÈë¹à½¬¿×¼ä¾à£º<2>"))
+  (setq startpt (getpoint "\nè¯·é€‰æ‹©çŒæµ†å­”èµ·ç‚¹ï¼š"))
+  (setq endpt (getpoint "\nè¯·é€‰æ‹©çŒæµ†å­”ç»ˆç‚¹æˆ–å¸·å¹•çº¿ç»ˆç‚¹ï¼š"))
+  (setq cgdis (getreal "\nè¯·è¾“å…¥çŒæµ†å­”é—´è·ï¼š<2>"))
   (setq f3ctrl (getvar "osmode"))
   (setq lanow (getvar "clayer"))
   (if (= cgdis nil) (setq cgdis 2))
@@ -142,7 +142,7 @@
 		((= cgldic "xadd")
     	(progn
 				(while (<= (car cirpt) (car endpt))
-					(setq bname (cond ((= knum 1) "Ò»Ğò¿×xCadx") ((= knum 2) "ÈıĞò¿×xCadx") ((= knum 3) "¶şĞò¿×xCadx")))
+					(setq bname (cond ((= knum 1) "ä¸€åºå­”xCadx") ((= knum 2) "ä¸‰åºå­”xCadx") ((= knum 3) "äºŒåºå­”xCadx")))
 					(command "insert" bname cirpt inspro "" "")
 					(command "circle" cirpt cgdis)
 					(setq discir (entlast))                  
@@ -164,7 +164,7 @@
 		((= cgldic "xless")
     	(progn
 				(while (>= (car cirpt) (car endpt))
-					(setq bname (cond ((= knum 1) "Ò»Ğò¿×xCadx") ((= knum 2) "ÈıĞò¿×xCadx") ((= knum 3) "¶şĞò¿×xCadx")))
+					(setq bname (cond ((= knum 1) "ä¸€åºå­”xCadx") ((= knum 2) "ä¸‰åºå­”xCadx") ((= knum 3) "äºŒåºå­”xCadx")))
 					(command "insert" bname cirpt inspro "" "")
 					(command "circle" cirpt cgdis)
 					(setq discir (entlast))                  
@@ -186,7 +186,7 @@
 		((= cgldic "yadd")
     	(progn
 				(while (<= (car (cdr cirpt)) (car (cdr endpt)))
-					(setq bname (cond ((= knum 1) "Ò»Ğò¿×xCadx") ((= knum 2) "ÈıĞò¿×xCadx")((= knum 3) "¶şĞò¿×xCadx")))
+					(setq bname (cond ((= knum 1) "ä¸€åºå­”xCadx") ((= knum 2) "ä¸‰åºå­”xCadx")((= knum 3) "äºŒåºå­”xCadx")))
 					(command "insert" bname cirpt inspro "" "")
 					(command "circle" cirpt cgdis)
 					(setq discir (entlast))                  
@@ -208,7 +208,7 @@
 		((= cgldic "yless")
     	(progn
 				(while (>= (car (cdr cirpt)) (car (cdr endpt)))
-					(setq bname (cond ((= knum 1) "Ò»Ğò¿×xCadx") ((= knum 2) "ÈıĞò¿×xCadx")((= knum 3) "¶şĞò¿×xCadx")))
+					(setq bname (cond ((= knum 1) "ä¸€åºå­”xCadx") ((= knum 2) "ä¸‰åºå­”xCadx")((= knum 3) "äºŒåºå­”xCadx")))
 					(command "insert" bname cirpt "" "" "")
 					(command "circle" cirpt cgdis)
 					(setq discir (entlast))                  
@@ -229,11 +229,11 @@
     )
   )
                                    
-  (princ "\n¹à½¬¿×²¼ÖÃÍê³É£¡¹²²¼ÖÃ¹à½¬¿×£º<")(princ sumcg)(princ ">¸ö,")
-  (princ "\nÆäÖĞÒ»Ğò¿×¹²<")(princ cg1num)(princ ">¸ö£»")
-  (princ "\nÆäÖĞ¶şĞò¿×¹²<")(princ cg2num)(princ ">¸ö£»")
-  (princ "\nÆäÖĞÈıĞò¿×¹²<")(princ cg3num)(princ ">¸ö£»")(princ)
-  (alert (strcat "\n¹à½¬¿×²¼ÖÃÍê³É£¡¹²²¼ÖÃ¹à½¬¿×£º<" (vl-princ-to-string sumcg) ">¸ö," "\nÆäÖĞÒ»Ğò¿×¹²<" (vl-princ-to-string cg1num) ">¸ö£»" "¶şĞò¿×¹²<" (vl-princ-to-string cg2num) ">¸ö£»" "ÈıĞò¿×¹²<" (vl-princ-to-string cg3num) ">¸ö£»") 
+  (princ "\nçŒæµ†å­”å¸ƒç½®å®Œæˆï¼å…±å¸ƒç½®çŒæµ†å­”ï¼š<")(princ sumcg)(princ ">ä¸ª,")
+  (princ "\nå…¶ä¸­ä¸€åºå­”å…±<")(princ cg1num)(princ ">ä¸ªï¼›")
+  (princ "\nå…¶ä¸­äºŒåºå­”å…±<")(princ cg2num)(princ ">ä¸ªï¼›")
+  (princ "\nå…¶ä¸­ä¸‰åºå­”å…±<")(princ cg3num)(princ ">ä¸ªï¼›")(princ)
+  (alert (strcat "\nçŒæµ†å­”å¸ƒç½®å®Œæˆï¼å…±å¸ƒç½®çŒæµ†å­”ï¼š<" (vl-princ-to-string sumcg) ">ä¸ª," "\nå…¶ä¸­ä¸€åºå­”å…±<" (vl-princ-to-string cg1num) ">ä¸ªï¼›" "äºŒåºå­”å…±<" (vl-princ-to-string cg2num) ">ä¸ªï¼›" "ä¸‰åºå­”å…±<" (vl-princ-to-string cg3num) ">ä¸ªï¼›") 
   )
   
   
@@ -248,10 +248,10 @@
 	(mapcar 'eval e_lst)
 			(if (not (member
 									msg
-									'(nil "º¯Êı±»È¡Ïû" ";´íÎó:quit / exit abort")
+									'(nil "å‡½æ•°è¢«å–æ¶ˆ" ";é”™è¯¯:quit / exit abort")
 									)
 						)
-				(princ (strcat ";´íÎó:" msg))
+				(princ (strcat ";é”™è¯¯:" msg))
 			)
 	)
 	(command "undo" "be")
