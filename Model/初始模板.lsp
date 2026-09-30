@@ -1,52 +1,52 @@
-;--加载区--
-	(if (null vlax-dump-object) (vl-load-com));将Visual LISP扩展功能加载到 AutoLISP
+           
+	(if (null vlax-dump-object) (vl-load-com))                                     
 	(if (null vls-core-load) (load "TbxlsCore"))
-;--*--
+      
 
 (defun test ( / )
 	
 )
 
-(defun start-program ( / )
+(defun start_program ( / )
   (test)
 )
 
-;命令程序
-(defun C:foo (/ *error* *CurDoc* *Old_SysVar*) 
-  ;--程序初始化--
-    (setq *CurDoc* (vla-get-activedocument (vlax-get-acad-object)))
-    (defun *error* (msg)  ;出错函数
-      ;其它需要恢复的内容
-      (if *Old_SysVar* (foreach recoverSystemVar *Old_SysVar* (apply 'setvar recoverSystemVar)));参数恢复
-      (vla-endundomark *CurDoc*) ;错误时结束编组
+         
+(defun C:foo (/ *error* __cur_doc.obj __old_sys_var.any __recoversystemvar.any __xx.any) 
+                 
+    (setq __cur_doc.obj (vla-get-activedocument (vlax-get-acad-object)))
+    (defun *error* (self.msg.str)           
+                         
+      (if __old_sys_var.any (foreach __recoversystemvar.any __old_sys_var.any (apply 'setvar __recoversystemvar.any)))         
+      (vla-endundomark __cur_doc.obj)                
     )
 
     (while (eq 8 (logand 8 (getvar 'undoctl))) 
-      (vla-endundomark *CurDoc*)
-    ) ;关闭以前的编组
+      (vla-endundomark __cur_doc.obj)
+    )                
     
-    (vla-startundomark *CurDoc*) ;记录编组
-      (progn ;记录系统变量
-        (setq *Old_SysVar* '());清空变量,避免出错
-        (setq *Old_SysVar* 
+    (vla-startundomark __cur_doc.obj)          
+      (progn              
+        (setq __old_sys_var.any '())                  
+        (setq __old_sys_var.any 
             (mapcar 
-              '(lambda (modifiedSystemVar / initSystemValue) 
-                (if (setq initSystemValue (getvar (car modifiedSystemVar)));获取被修改的系统变量的初始值到{initSystemVar}
+              '(lambda (self.modified_system_var.any / __init_system_value.any) 
+                (if (setq __init_system_value.any (getvar (car self.modified_system_var.any)))                                              
                     (progn 
-                      (vl-catch-all-apply 'setvar modifiedSystemVar);修改系统变量值为下面list对应的
-                      (list (car modifiedSystemVar) initSystemValue);将被修改的系统变量初始值赋给组表{*Old_SysVar*}
+                      (vl-catch-all-apply 'setvar self.modified_system_var.any)                               
+                      (list (car self.modified_system_var.any) __init_system_value.any)                                               
                     )
                 )
               )
-              ;此处按格式添加需要改变的系统变量值
-              (vls-Modify-SystemVariant);TbxlsCore内的函数，获取修改的系统变量列表及值
+                                                 
+              (vls-Modify-SystemVariant)                                              
             )
-        );记录参数
+        )         
       )
-  (start-program)
-  ;--程序结尾--
-    (command "redraw");清空一行
-    (if *Old_SysVar* (foreach xx *Old_SysVar* (apply 'setvar xx)));参数恢复
-    (vla-endundomark *CurDoc*) ;结束编组
+  (start_program)
+               
+    (command "redraw")         
+    (if __old_sys_var.any (foreach __xx.any __old_sys_var.any (apply 'setvar __xx.any)))         
+    (vla-endundomark __cur_doc.obj)          
     (princ)
 )

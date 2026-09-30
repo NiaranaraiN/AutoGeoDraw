@@ -66,3 +66,80 @@
 2026-05-18 22:30:30,289 - cad_controller - INFO - 正在启动AutoCAD实例...
 2026-05-18 22:30:30,290 - cad_controller - ERROR - 启动新CAD实例失败: (-2147221005, 'Invalid class string', None, None)
 2026-05-18 22:30:30,290 - cad_controller - ERROR - 启动CAD失败: (-2147221005, 'Invalid class string', None, None)
+2026-05-28 23:01:23,977 - mcp_cad_server - INFO - 启动 CAD MCP 服务器
+2026-05-28 23:01:23,980 - mcp_cad_server - INFO - 启动 CAD MCP 服务器
+2026-05-28 23:01:23,980 - mcp_cad_server - INFO - 配置文件加载成功
+2026-05-28 23:01:23,981 - cad_controller - INFO - CAD控制器已初始化
+2026-05-28 23:01:23,981 - nlp_processor - INFO - 自然语言处理器已初始化
+2026-05-28 23:01:23,981 - mcp_cad_server - INFO - CAD服务已初始化
+2026-05-28 23:01:23,987 - mcp_cad_server - INFO - 服务器正在使用 stdio 传输运行
+2026-05-28 23:01:23,997 - mcp.server.lowlevel.server - INFO - Processing request of type ListToolsRequest
+2026-05-28 23:01:30,783 - mcp.server.lowlevel.server - INFO - Processing request of type ListPromptsRequest
+2026-05-28 23:01:30,791 - mcp.server.lowlevel.server - INFO - Processing request of type GetPromptRequest
+2026-05-28 23:01:30,796 - mcp.server.lowlevel.server - INFO - Processing request of type GetPromptRequest
+2026-05-30 18:34:43,795 - mcp_cad_server - INFO - 启动 CAD MCP 服务器
+2026-05-30 18:34:43,797 - mcp_cad_server - INFO - 启动 CAD MCP 服务器
+2026-05-30 18:34:43,798 - mcp_cad_server - INFO - 配置文件加载成功
+2026-05-30 18:34:43,798 - cad_controller - INFO - CAD控制器已初始化
+2026-05-30 18:34:43,798 - nlp_processor - INFO - 自然语言处理器已初始化
+2026-05-30 18:34:43,798 - mcp_cad_server - INFO - CAD服务已初始化
+2026-05-30 18:34:43,804 - mcp_cad_server - INFO - 服务器正在使用 stdio 传输运行
+2026-05-30 18:34:43,813 - mcp.server.lowlevel.server - INFO - Processing request of type ListToolsRequest
+2026-05-30 18:34:49,116 - mcp.server.lowlevel.server - INFO - Processing request of type ListPromptsRequest
+2026-05-30 18:34:49,216 - mcp.server.lowlevel.server - INFO - Processing request of type GetPromptRequest
+2026-05-30 18:34:49,220 - mcp.server.lowlevel.server - INFO - Processing request of type GetPromptRequest
+2026-05-30 20:48:50,954 - mcp_cad_server - INFO - 启动 CAD MCP 服务器
+2026-05-30 20:48:50,955 - mcp_cad_server - INFO - 启动 CAD MCP 服务器
+2026-05-30 20:48:50,955 - mcp_cad_server - INFO - 配置文件加载成功
+2026-05-30 20:48:50,955 - cad_controller - INFO - CAD控制器已初始化
+2026-05-30 20:48:50,956 - nlp_processor - INFO - 自然语言处理器已初始化
+2026-05-30 20:48:50,956 - mcp_cad_server - INFO - CAD服务已初始化
+2026-05-30 20:48:50,959 - mcp_cad_server - INFO - 服务器正在使用 stdio 传输运行
+2026-05-30 20:48:50,964 - mcp.server.lowlevel.server - INFO - Processing request of type ListToolsRequest
+2026-05-30 20:48:53,285 - mcp.server.lowlevel.server - INFO - Processing request of type ListPromptsRequest
+2026-05-30 20:48:53,293 - mcp.server.lowlevel.server - INFO - Processing request of type GetPromptRequest
+2026-05-30 20:48:53,399 - mcp.server.lowlevel.server - INFO - Processing request of type GetPromptRequest
+2026-06-01 17:54:16,048 - mcp_cad_server - INFO - 启动 CAD MCP 服务器
+2026-06-01 17:54:16,050 - mcp_cad_server - INFO - 启动 CAD MCP 服务器
+2026-06-01 17:54:16,050 - mcp_cad_server - INFO - 配置文件加载成功
+2026-06-01 17:54:16,051 - cad_controller - INFO - CAD控制器已初始化
+2026-06-01 17:54:16,051 - nlp_processor - INFO - 自然语言处理器已初始化
+2026-06-01 17:54:16,051 - mcp_cad_server - INFO - CAD服务已初始化
+2026-06-01 17:54:16,058 - mcp_cad_server - INFO - 服务器正在使用 stdio 传输运行
+2026-06-01 17:54:16,067 - mcp.server.lowlevel.server - INFO - Processing request of type ListToolsRequest
+2026-06-01 17:54:20,685 - mcp.server.lowlevel.server - INFO - Processing request of type ListPromptsRequest
+2026-06-01 17:54:20,691 - mcp.server.lowlevel.server - INFO - Processing request of type GetPromptRequest
+2026-06-01 17:54:20,694 - mcp.server.lowlevel.server - INFO - Processing request of type GetPromptRequest
+2026-06-05 09:05:44,640 - mcp_cad_server - INFO - 启动 CAD MCP 服务器
+2026-06-05 09:05:44,644 - mcp_cad_server - INFO - 启动 CAD MCP 服务器
+2026-06-05 09:05:44,644 - mcp_cad_server - INFO - 配置文件加载成功
+2026-06-05 09:05:44,644 - cad_controller - INFO - CAD控制器已初始化
+2026-06-05 09:05:44,644 - nlp_processor - INFO - 自然语言处理器已初始化
+2026-06-05 09:05:44,645 - mcp_cad_server - INFO - CAD服务已初始化
+2026-06-05 09:05:44,651 - mcp_cad_server - INFO - 服务器正在使用 stdio 传输运行
+2026-06-05 09:05:44,660 - mcp.server.lowlevel.server - INFO - Processing request of type ListToolsRequest
+2026-06-05 09:05:58,180 - mcp.server.lowlevel.server - INFO - Processing request of type ListPromptsRequest
+2026-06-05 09:05:58,190 - mcp.server.lowlevel.server - INFO - Processing request of type GetPromptRequest
+2026-06-05 09:05:58,197 - mcp.server.lowlevel.server - INFO - Processing request of type GetPromptRequest
+2026-06-07 00:21:15,261 - mcp_cad_server - INFO - 启动 CAD MCP 服务器
+2026-06-07 00:21:15,262 - mcp_cad_server - INFO - 启动 CAD MCP 服务器
+2026-06-07 00:21:15,263 - mcp_cad_server - INFO - 配置文件加载成功
+2026-06-07 00:21:15,263 - cad_controller - INFO - CAD控制器已初始化
+2026-06-07 00:21:15,263 - nlp_processor - INFO - 自然语言处理器已初始化
+2026-06-07 00:21:15,264 - mcp_cad_server - INFO - CAD服务已初始化
+2026-06-07 00:21:15,271 - mcp_cad_server - INFO - 服务器正在使用 stdio 传输运行
+2026-06-07 00:21:15,279 - mcp.server.lowlevel.server - INFO - Processing request of type ListToolsRequest
+2026-06-07 00:21:47,144 - mcp.server.lowlevel.server - INFO - Processing request of type ListPromptsRequest
+2026-06-07 00:21:47,149 - mcp.server.lowlevel.server - INFO - Processing request of type GetPromptRequest
+2026-06-07 00:21:52,411 - mcp.server.lowlevel.server - INFO - Processing request of type GetPromptRequest
+2026-06-07 16:06:26,383 - mcp_cad_server - INFO - 启动 CAD MCP 服务器
+2026-06-07 16:06:26,385 - mcp_cad_server - INFO - 启动 CAD MCP 服务器
+2026-06-07 16:06:26,386 - mcp_cad_server - INFO - 配置文件加载成功
+2026-06-07 16:06:26,386 - cad_controller - INFO - CAD控制器已初始化
+2026-06-07 16:06:26,386 - nlp_processor - INFO - 自然语言处理器已初始化
+2026-06-07 16:06:26,387 - mcp_cad_server - INFO - CAD服务已初始化
+2026-06-07 16:06:26,395 - mcp_cad_server - INFO - 服务器正在使用 stdio 传输运行
+2026-06-07 16:06:26,403 - mcp.server.lowlevel.server - INFO - Processing request of type ListToolsRequest
+2026-06-07 16:09:08,156 - mcp.server.lowlevel.server - INFO - Processing request of type ListPromptsRequest
+2026-06-07 16:09:08,274 - mcp.server.lowlevel.server - INFO - Processing request of type GetPromptRequest
+2026-06-07 16:09:18,446 - mcp.server.lowlevel.server - INFO - Processing request of type GetPromptRequest

@@ -17,6 +17,34 @@
     "**/.git/**": true
   },
   "search.exclude": {
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    
     "**/*.fas": true,
     "**/*.vlx": true,
     "**/*.vls": true,

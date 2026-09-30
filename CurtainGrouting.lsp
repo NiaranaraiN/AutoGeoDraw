@@ -1,34 +1,34 @@
 
 
-;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
-;;运行程序																															;;
-;;																																		 ;;
-;;																																		 ;;
-;;																																		 ;;
-;;																																		 ;;
-;;																																		 ;;
-;;																																		 ;;
-;;																																		 ;;
-;;																																		 ;;
-;;																																		 ;;
-;;																																		 ;;
-;;																																		 ;;
-;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+                                                                         
+                                           
+                                       
+                                       
+                                       
+                                       
+                                       
+                                       
+                                       
+                                       
+                                       
+                                       
+                                       
+                                                                         
 
-; 保存程序运行前环境状态
+                        
 (defun bakup_env()
-	(setq osmode_ctrl (getvar "osmode")) ;保存捕捉状态
-	(setq clayer_ctrl (getvar "clayer")) ;保存图层状态
-);finished
+	(setq osmode_ctrl (getvar "osmode"))              
+	(setq clayer_ctrl (getvar "clayer"))              
+)         
 
-;恢复程序前的状态
+                 
 (defun recover_env()
   	(setvar "osmode" osmode_ctrl)
   	(setvar "clayer" clayer_ctrl)	
 )
 
 
-(defun addorless(knum bullv) ;;knum孔序传入 bullv当前加减状态判断
+(defun addorless(knum bullv)                                     
 	(setq bully 
 		(cond 
     	((and (= 1 knum) (= 1 bullv)) 1)
@@ -41,7 +41,7 @@
   )
  )
 
-;;孔序加减函数
+              
 (defun cgnumber(knum bullv)
 	(setq knum
 		(cond
@@ -51,9 +51,9 @@
   )
 )
 
-;;灌浆孔一二三序孔块检查与生成
-(defun creatcgblock(cirpt cirr) ;;cirpt:选取圆心 cirr 灌浆孔半径
-  ;;制作一序孔块
+                              
+(defun creatcgblock(cirpt cirr)                                 
+                
   (if (= (tblsearch "block" "一序孔xCadx") nil)
     (progn
     (command "layer" "m" "0" "")
@@ -62,18 +62,18 @@
 		(command "block" "一序孔xCadx" cirpt cgforb "")
 		)
 	)
-  ;;制作三序孔块
+                
 	(if (= (tblsearch "block" "三序孔xCadx") nil)
     (progn
     (command "layer" "m" "0" "")
 		(command "circle" cirpt cirr)
-		(setq cgforb (entlast));;圆
+		(setq cgforb (entlast))    
     (command "-hatch" "p" "solid" "s" cgforb "")
-    (setq haforb (entlast));;填充
+    (setq haforb (entlast))      
 		(command "block" "三序孔xCadx" cirpt cgforb haforb "")
 		)
 	)
-  ;;制作二序孔
+              
 	(if (= (tblsearch "block" "二序孔xCadx") nil)
     (progn
     (command "layer" "m" "0" "")
@@ -81,11 +81,11 @@
     (setq pl2nd (polar cirpt (* pi 0.5) cirr))
     (setq pl3rd (polar cirpt 0 cirr))
 		(command "circle" cirpt cirr)
-		(setq cgforb (entlast));;圆
+		(setq cgforb (entlast))    
     (command "pline" pl1st pl2nd "a" "s" pl3rd pl1st "" )
-    (setq arforb (entlast));;二序孔的半圆
+    (setq arforb (entlast))              
     (command "-hatch" "p" "solid" "s" arforb "")
-    (setq haforb (entlast));;填充
+    (setq haforb (entlast))      
 		(command "block" "二序孔xCadx" cirpt cgforb haforb "")
     (entdel arforb)
     (princ)
@@ -93,7 +93,7 @@
 	)
 )
 
-(defun xoryctrl(startpt endpt);;判断多段线大体方向xadd:沿X正方向画弧线取交点；xless：沿X负方向画弧线取交点。Y的类似。按象限分为四个方向。
+(defun xoryctrl(startpt endpt)                                                                                                           
   (setq anglev (angle startpt endpt))
 	(cond 
 		((or (<= anglev (* pi 0.25)) (>= anglev (* pi 1.75)) ) "xadd")
@@ -102,21 +102,21 @@
 		((and (> anglev (* pi 1.25)) (< anglev (* pi 1.75)) ) "yless")
   )
 )
-;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
-;;运行程序															;;
-;;																		 ;;
-;;																		 ;;
-;;																		 ;;
-;;																		 ;;
-;;																		 ;;
-;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
-;;;孔序增减判断
+                                         
+                           
+                       
+                       
+                       
+                       
+                       
+                                         
+               
 
 
 
 (defun start_program ()
-	(princ "\n==========\n帷幕灌浆孔自动布置\nAuthor：Liusha.Li\n公众号:xCadx\n更多内容请访问：https://www.xcadx.com/\n==========")
-  (setq prop (getreal "\n请输入图纸比例：<1000>"));;输入图形比例
+	(princ "\n==========\n帷幕灌浆孔自动布置\nAuthor：Liusha.Li\n==========")
+  (setq prop (getreal "\n请输入图纸比例：<1000>"))              
   (if (= prop nil) (setq prop 1000))
   (setq cgline (car (entsel "\n请选择帷幕线：")))
   (while (or (= cgline nil) (and (/= (cdr (assoc 0 (entget cgline))) "LWPOLYLINE") (/= (cdr (assoc 0 (entget cgline))) "LINE")))
@@ -128,13 +128,13 @@
   (setq f3ctrl (getvar "osmode"))
   (setq lanow (getvar "clayer"))
   (if (= cgdis nil) (setq cgdis 2))
-  (setq cirr 0.71);;设定灌浆孔半径，以后确定是否设定为输入参数
-  (setq inspro (/ 1000 prop));;插入块的比例
-  (setq cgdis (* (/ 1000 prop) cgdis));;加比例后的灌浆间距
-  (creatcgblock startpt cirr);;绘制一二三序孔的块，后面插入用。
-  (setq knum 1 bullv 1 sumcg 0 cg1num 0 cg2num 0 cg3num 0);；设置初始孔号和增减方向；
-  (setq cgldic (xoryctrl startpt endpt));;判定灌浆线走向,cgldic:curtaingrouting line direction:指灌浆线方向
-  (setq cirpt startpt);;设置初始灌浆孔
+  (setq cirr 0.71)                                            
+  (setq inspro (/ 1000 prop))              
+  (setq cgdis (* (/ 1000 prop) cgdis))                    
+  (creatcgblock startpt cirr)                                  
+  (setq knum 1 bullv 1 sumcg 0 cg1num 0 cg2num 0 cg3num 0)                           
+  (setq cgldic (xoryctrl startpt endpt))                                                                   
+  (setq cirpt startpt)                
   (setq interl (list 1 2))
   (command "layer" "m" "Geo" "")
   (setvar "osmode" 0)
@@ -145,10 +145,10 @@
 					(setq bname (cond ((= knum 1) "一序孔xCadx") ((= knum 2) "三序孔xCadx") ((= knum 3) "二序孔xCadx")))
 					(command "insert" bname cirpt inspro "" "")
 					(command "circle" cirpt cgdis)
-					(setq discir (entlast));;获得圆心距辅助圆
-					(setq interl (acet-geom-intersectwith cgline discir 1));;获取交点列表
+					(setq discir (entlast))                  
+					(setq interl (acet-geom-intersectwith cgline discir 1))              
 					(setq nextc (if (> (car (nth 0 interl)) (car (nth 1 interl)) ) (nth 0 interl) (nth 1 interl) ))
-					(setq cirpt nextc);; 移圆心坐标
+					(setq cirpt nextc)             
 					(cond 
        			((= knum 1) (setq cg1num (1+ cg1num)) )
 						((= knum 2) (setq cg3num (1+ cg3num)) )
@@ -167,10 +167,10 @@
 					(setq bname (cond ((= knum 1) "一序孔xCadx") ((= knum 2) "三序孔xCadx") ((= knum 3) "二序孔xCadx")))
 					(command "insert" bname cirpt inspro "" "")
 					(command "circle" cirpt cgdis)
-					(setq discir (entlast));;获得圆心距辅助圆
-					(setq interl (acet-geom-intersectwith cgline discir 1));;获取交点列表
+					(setq discir (entlast))                  
+					(setq interl (acet-geom-intersectwith cgline discir 1))              
 					(setq nextc (if (> (car (nth 0 interl)) (car (nth 1 interl)) ) (nth 1 interl) (nth 0 interl) ))
-					(setq cirpt nextc);; 移圆心坐标
+					(setq cirpt nextc)             
 					(cond 
        					((= knum 1) (setq cg1num (1+ cg1num)) )
 						((= knum 2) (setq cg3num (1+ cg3num)) )
@@ -189,10 +189,10 @@
 					(setq bname (cond ((= knum 1) "一序孔xCadx") ((= knum 2) "三序孔xCadx")((= knum 3) "二序孔xCadx")))
 					(command "insert" bname cirpt inspro "" "")
 					(command "circle" cirpt cgdis)
-					(setq discir (entlast));;获得圆心距辅助圆
-					(setq interl (acet-geom-intersectwith cgline discir 1));;获取交点列表
+					(setq discir (entlast))                  
+					(setq interl (acet-geom-intersectwith cgline discir 1))              
 					(setq nextc (if (> (car (cdr (nth 0 interl))) (car (cdr (nth 1 interl))) ) (nth 0 interl) (nth 1 interl) ))
-					(setq cirpt nextc);; 移圆心坐标
+					(setq cirpt nextc)             
 					(cond 
        					((= knum 1) (setq cg1num (1+ cg1num)) )
 						((= knum 2) (setq cg3num (1+ cg3num)) )
@@ -211,10 +211,10 @@
 					(setq bname (cond ((= knum 1) "一序孔xCadx") ((= knum 2) "三序孔xCadx")((= knum 3) "二序孔xCadx")))
 					(command "insert" bname cirpt "" "" "")
 					(command "circle" cirpt cgdis)
-					(setq discir (entlast));;获得圆心距辅助圆
-					(setq interl (acet-geom-intersectwith cgline discir 1));;获取交点列表
+					(setq discir (entlast))                  
+					(setq interl (acet-geom-intersectwith cgline discir 1))              
 					(setq nextc (if (> (car (cdr (nth 0 interl))) (car (cdr (nth 1 interl))) ) (nth 1 interl) (nth 0 interl) ))
-					(setq cirpt nextc);; 移圆心坐标
+					(setq cirpt nextc)             
 					(cond 
        					((= knum 1) (setq cg1num (1+ cg1num)) )
 						((= knum 2) (setq cg3num (1+ cg3num)) )
@@ -228,7 +228,7 @@
     	)
     )
   )
-  ;;(command "layer" "m" "temp" "")
+                                   
   (princ "\n灌浆孔布置完成！共布置灌浆孔：<")(princ sumcg)(princ ">个,")
   (princ "\n其中一序孔共<")(princ cg1num)(princ ">个；")
   (princ "\n其中二序孔共<")(princ cg2num)(princ ">个；")
@@ -240,7 +240,7 @@
 )
 
 
-;命令程序
+         
 (defun c:HZWMGJKLLS( / *error* e_lst)
 	(setq e_lst (mapcar (function (lambda (n) (list 'setvar n (getvar n)))) 
 	'("autosnap" "osmode" "aperture" "hpspace" "hpassoc" "mirrtext" "auprec" "luprec" "dimzin" "cecolor")))
@@ -256,11 +256,11 @@
 	)
 	(command "undo" "be")
 	(bakup_env)
-	;程序开始
+	         
 	(vl-load-com)
 	(start_program)
 
-	;程序结束
+	         
 	(recover_env)
 	(command "undo" "e")
 	(*error* nil)

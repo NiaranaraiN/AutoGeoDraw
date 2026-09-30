@@ -1,37 +1,37 @@
-;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
-;;查询剖面上一点的柱号和高程		czd																					 ;;
-;;																																		 ;;
-;;																																		 ;;
-;;																																		 ;;
-;;																																		 ;;
-;;																																		 ;;
-;;																																		 ;;
-;;																																		 ;;
-;;																																		 ;;
-;;																																		 ;;
-;;																																		 ;;
-;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+                                                                         
+                                                         
+                                       
+                                       
+                                       
+                                       
+                                       
+                                       
+                                       
+                                       
+                                       
+                                       
+                                                                         
 
-; 保存程序运行前环境状态
+                        
 (defun bakup_env()
-	(setq osmode_ctrl (getvar "osmode")) ;保存捕捉状态
-	(setq clayer_ctrl (getvar "clayer")) ;保存图层状态
-);finished
+	(setq osmode_ctrl (getvar "osmode"))              
+	(setq clayer_ctrl (getvar "clayer"))              
+)         
 
-;恢复程序前的状态
+                 
 (defun recover_env()
   	(setvar "osmode" osmode_ctrl)
   	(setvar "clayer" clayer_ctrl)	
 )
 
-;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
-;;运行程序															;;
-;;																		 ;;
-;;																		 ;;
-;;																		 ;;
-;;																		 ;;
-;;																		 ;;
-;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+                                         
+                           
+                       
+                       
+                       
+                       
+                       
+                                         
 (defun szd_man_program( / __section_line __section_point __is_success  __obj_section_line __at_section_line_distance __section_start_point __start_x  __section_x __section_y __section_distance __pipe_station_value __elevation_value __text_ang_0 text_ang_90 __section_max_point __section_min_point __max_y __min_y __highest_point __lowest_point __obj_temp_line __temp_line_dxf __zh_insert_point __elevation_point)
   (setq __is_success  0 __section_line nil)
   (setvar "osmode" 1573)
@@ -48,12 +48,12 @@
   (while (= __is_success 0)
 		(setq __section_point (getpoint "选择剖面线上的点："))
 		(setq __at_section_line_distance (vlax-curve-getdistatpoint __obj_section_line __section_point))
-		;点在剖面图地面线上：
+		                     
 		(if __at_section_line_distance
 				(setq __is_success  1)
 		)
   )
-	(setq __section_start_point (vlax-curve-getStartPoint __obj_section_line));得到线段起点会标值
+	(setq __section_start_point (vlax-curve-getStartPoint __obj_section_line))                   
   (setq __start_x (car __section_start_point) __section_x (car __section_point) __section_y (cadr __section_point))
 	(setq __section_distance (- __section_x  __start_x))
   (setq __elevation_value (rtos __section_y 2 2)  __pipe_station_value (rtos __section_distance 2 2) __text_ang_0 0 text_ang_90 1.5708 )
@@ -87,9 +87,9 @@
   (entmake_text __station_point_online __pipe_station_value text_ang_90)
   (entmake_text __zh_insert_point __pipe_station_value text_ang_90)
   (entmake_text __elevation_point __elevation_value __text_ang_0)
-  ; (make-xline __section_point '(0.0 1.0 0.0))
-	;(command "text" __section_point 1.5 0 (rtos __section_y 2 2) )
-	;(command "text" __section_point 1.5 90 (rtos __section_x 2 2) )
+                                               
+	                                                               
+	                                                                
   (alert (strcat "桩号：" (rtos __section_distance 2 2) "\n高程:" (rtos __section_y 2 2) "" ))
 )
 
@@ -101,7 +101,7 @@
     (if (or (= (cdr (assoc 0 (entget __section_line))) "LWPOLYLINE") (= (cdr (assoc 0 (entget __section_line))) "POLYLINE") (= (cdr (assoc 0 (entget __section_line))) "LINE") )
 			(progn
 				(setq __obj_section_line (vlax-ename->vla-object __section_line))
-    		(setq __section_start_point (vlax-curve-getStartPoint __obj_section_line));得到线段起点会标值
+    		(setq __section_start_point (vlax-curve-getStartPoint __obj_section_line))                   
 				(setq __is_success 1)
       ))
 	)
@@ -125,12 +125,12 @@
   (setq __inter_points (vla-IntersectWith __obj_section_line __obj_temp_line acExtendNone))
   (setq __inter_points_list (vlax-safearray->list (vlax-variant-value __inter_points)))
   (setq __insert_points (list (1- (car __inter_points_list)) (1+ (cadr __inter_points_list)) 0.0))
-	;(setq __obj_inter_result (vlax-variant-value (vlax-invoke-method __obj_section_line 'IntersectWith __obj_temp_line 0)))
-  ; (setq __xl_inter_p (vlax-safearray->list obj_inter_result))
-  ; (princ (car __xl_inter_p))
+	                                                                                                                        
+                                                               
+                              
   (entmake_text __insert_points (rtos __distance_find)  1.5708)
   (entmake_text __zh_insert_point (rtos __distance_find)  1.5708)
-  ; (make-xline (list __get_distance_x (cadr __section_start_point) 0.0) '(0.0 1.0 0.0))
+                                                                                        
 
   
 )
@@ -165,7 +165,7 @@
   (while (= __is_success 0)
 		(setq __plan_point (getpoint "选择平面剖线上的点："))
 		(setq __at_plan_line_distance (vlax-curve-getdistatpoint __obj_plan_line __plan_point))
-		;点在剖面图地面线上：
+		                     
 		(if __at_plan_line_distance
 				(setq __is_success  1)
 		)
@@ -231,22 +231,22 @@
 (defun entmake_text ( _text_point _text_txt _text_angle / __text-entity __result )
     (setq __text-entity 
         (list 
-          (cons 0 "TEXT") ; 实体类型
-          (cons 100 "AcDbText") ; 子类型
-          (cons 10 _text_point) ; 插入点
-          (cons 40 2.5) ; 文字高度
-          (cons 1 _text_txt) ; 文字内容
-          (cons 7 "宋体2.5") ; 字体样式
-          (cons 8 "Temp") ; 图层
-          (cons 62 51) ; 颜色
-          (cons 50 _text_angle) ; 文字角度
+          (cons 0 "TEXT")           
+          (cons 100 "AcDbText")         
+          (cons 10 _text_point)         
+          (cons 40 2.5)           
+          (cons 1 _text_txt)           
+          (cons 7 "宋体2.5")           
+          (cons 8 "Temp")       
+          (cons 62 51)       
+          (cons 50 _text_angle)           
         )
   )
-  (setq __result (entmake __text-entity)) ; 创建文字实体
+  (setq __result (entmake __text-entity))               
 	__result
 )
 
-(defun make-xline (self.xline_center_point self.verctor_point / __maked_xline __result);输入一个点坐标{self.xline_center_point}和向量坐标{self.verctor_point}以构造XLINE
+(defun make-xline (self.xline_center_point self.verctor_point / __maked_xline __result)                                                                                 
 	(setq __maked_xline
 		(list
 			'(0 . "XLINE")            
@@ -287,7 +287,7 @@
 	(entmod __temp_line_dxf)
 )
 
-;命令程序
+         
 (defun c:szd( / *error* e_lst)
 	(setq e_lst (mapcar (function (lambda (n) (list 'setvar n (getvar n)))) 
 	'("autosnap" "osmode" "aperture" "hpspace" "hpassoc" "mirrtext" "auprec" "luprec" "dimzin" "cecolor")))
@@ -303,11 +303,11 @@
 	)
 	(command "undo" "be")
 	(bakup_env)
-	;程序开始
+	         
 	(vl-load-com)
 	(szd_man_program)
 
-	;程序结束
+	         
 	(recover_env)
 	(command "undo" "e")
 	(*error* nil)
@@ -328,11 +328,11 @@
 	)
 	(command "undo" "be")
 	(bakup_env)
-	;程序开始
+	         
 	(vl-load-com)
 	(dszd_man_program)
 
-	;程序结束
+	         
 	(recover_env)
 	(command "undo" "e")
 	(*error* nil)
@@ -353,11 +353,11 @@
 	)
 	(command "undo" "be")
 	(bakup_env)
-	;程序开始
+	         
 	(vl-load-com)
 	(dgc_program)
 
-	;程序结束
+	         
 	(recover_env)
 	(command "undo" "e")
 	(*error* nil)
@@ -378,11 +378,11 @@
 	)
 	(command "undo" "be")
 	(bakup_env)
-	;程序开始
+	         
 	(vl-load-com)
 	(azd_program)
 
-	;程序结束
+	         
 	(recover_env)
 	(command "undo" "e")
 	(*error* nil)
@@ -403,11 +403,11 @@
 	)
 	(command "undo" "be")
 	(bakup_env)
-	;程序开始
+	         
 	(vl-load-com)
 	(dazd_program)
 
-	;程序结束
+	         
 	(recover_env)
 	(command "undo" "e")
 	(*error* nil)

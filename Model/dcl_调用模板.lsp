@@ -1,55 +1,55 @@
-(defun load-menu-template (dcl_id / set-all-key-value action-tile->function run-function-by-dialog-id load-menu-window dcl_key_list); DCL模版
-	(defun set-all-key-value ( / dcl_key ) ;保存已经输入的值
-		(foreach dcl_key dcl_key_list
-			(set (read (strcat dcl_key "_value")) (get_tile dcl_key))
+(defun load_menu_template (self.dcl_id.int / __set_all_key_value __action_tile_to_function __run_function_by_dialog_id __load_menu_window __dcl_key_list.list __dialog_return_id.int __dialog_name.str __key.str __dcl_key.str)         
+	(defun __set_all_key_value ( / __dcl_key.str )                  
+		(foreach __dcl_key.str __dcl_key_list.list
+			(set (read (strcat "*" __dcl_key.str "_value*")) (get_tile __dcl_key.str))
 		)
 	)
   
-	(defun action-tile->function (recv_key) ;全部按钮的点击动作触发对应值,不同的值 会触发函数botton-action对应程序
+	(defun __action_tile_to_function (self.recv_key.str)                                                                       
 		(cond
-			((= recv_key "cancel") ;{取消按钮}
+			((= self.recv_key.str "cancel")            
 				(done_dialog 0)
 			)
-			((= recv_key "accept") ;{确认按钮}
-				(set-all-key-value)
+			((= self.recv_key.str "accept")            
+				(__set_all_key_value)
 				(done_dialog 1)
 			)
-			((= recv_key "help") ;{帮助按钮}
-				(set-all-key-value)
+			((= self.recv_key.str "help")            
+				(__set_all_key_value)
 				(done_dialog 2)
 			)
-			((= recv_key "其它的KEY值，根据情况改")
-				(set-all-key-value)
+			((= self.recv_key.str "其它的KEY值，根据情况改")
+				(__set_all_key_value)
 				(done_dialog 3)
 			)
 		)
 	)
-	(defun run-function-by-dialog-id (recv_dialog_id / ss_length) ;按钮对应的具体操作
+	(defun __run_function_by_dialog_id (self.recv_dialog_id.int / __ss_length.int)                    
 		(cond
-			((= recv_dialog_id 0)
+			((= self.recv_dialog_id.int 0)
        
 			)
 		)
 	)
-	(defun send-global-value () ;特殊情况下，把控件对应的值传递到非局部变量参数；
-		;(setq draw_scale  (read drawingScaleInput_value))
+	(defun send_global_value ()                                                  
+		                                                  
 	)
-	(defun load-menu-window (recv_dcl_id / );加载菜单
-		(setq dialog_return_id 2 dialog_name "输入对话框名称")
-		(setq dcl_key_list '("输入需要key，组成列表"))
-		(while (> dialog_return_id 1) ; dialogStatus 为1时，是按了确定，0是按了取消
-			(if (not (new_dialog dialog_name recv_dcl_id)) (exit))
-			(foreach key dcl_key_list
-				(if (eval (read (strcat key "_value")))
-					(set_tile key (eval (read (strcat key "_value"))))
-					(set (read (strcat key "_value")) "NULL")
-				);控件内容
-				(action_tile key "(action-tile->function $key)");点击动作
+	(defun __load_menu_window (self.recv_dcl_id.int / )         
+		(setq __dialog_return_id.int 2 __dialog_name.str "输入对话框名称")
+		(setq __dcl_key_list.list '("输入需要key，组成列表"))
+		(while (> __dialog_return_id.int 1)                                              
+			(if (not (new_dialog __dialog_name.str self.recv_dcl_id.int)) (exit))
+			(foreach __key.str __dcl_key_list.list
+				(if (eval (read (strcat "*" __key.str "_value*")))
+					(set_tile __key.str (eval (read (strcat "*" __key.str "_value*"))))
+					(set (read (strcat "*" __key.str "_value*")) "NULL")
+				)         
+				(action_tile __key.str "(__action_tile_to_function $key)")         
 			)
-			(setq dialog_return_id (start_dialog))
-			(run-function-by-dialog-id dialog_return_id)
+			(setq __dialog_return_id.int (start_dialog))
+			(__run_function_by_dialog_id __dialog_return_id.int)
 		)
-		(unload_dialog recv_dcl_id)
+		(unload_dialog self.recv_dcl_id.int)
 	)
-  (load-menu-window dcl_id)
+  (__load_menu_window self.dcl_id.int)
 )
