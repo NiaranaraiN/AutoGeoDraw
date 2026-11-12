@@ -1,5 +1,5 @@
 MainMenu: dialog {
-  // ç¬¬ä¸€è¡Œï¼Œæ ‡é¢˜â€œçŒæµ†å·¥ç¨‹é‡ç»Ÿè®¡å°ç¨‹åºv0.1.0_202405
+  // µÚÒ»ĞĞ£¬±êÌâ¡°¹à½¬¹¤³ÌÁ¿Í³¼ÆĞ¡³ÌĞòv0.1.0_202405
   : boxed_row {
     fixed_width= true;
     fixed_height=true;
@@ -8,23 +8,23 @@ MainMenu: dialog {
   }
 
 
-  //ç¬¬äºŒè¡Œï¼Œç¬¬ä¸€åˆ—æ”¾çº¿ï¼Œç¬¬äºŒåˆ—æ”¾æ­£å¸¸è“„æ°´ä½é«˜ç¨‹
+  //µÚ¶şĞĞ£¬µÚÒ»ÁĞ·ÅÏß£¬µÚ¶şÁĞ·ÅÕı³£ĞîË®Î»¸ß³Ì
   : row {
-    // äºŒè¡Œä¸€åˆ—ï¼Œå¿…é€‰çº¿æ®µï¼Œ
+    // ¶şĞĞÒ»ÁĞ£¬±ØÑ¡Ïß¶Î£¬
     : column {
       fixed_width= true;
       width=20;
-      label ="å¿…é€‰çº¿æ®µ";
+      label ="±ØÑ¡Ïß¶Î";
 
       :row{
         : button { 
           fixed_width=true;
           width= 5;
-          label ="é€‰æ‹©çŒæµ†çº¿";
+          label ="Ñ¡Ôñ¹à½¬Ïß";
           key = "SSCurtainButtom";
           }
         : text { 
-          value = "å·²é€‰æ‹© 999";
+          value = "ÒÑÑ¡Ôñ 999";
           fixed_width=true;
            width = 10;
           }
@@ -32,13 +32,13 @@ MainMenu: dialog {
 
       : row {
         : button { 
-          label ="æ­£å¸¸è“„æ°´ä½";
+          label ="Õı³£ĞîË®Î»";
           key = "SSWaterLevelButtom";
           fixed_width=true;
           width = 5;
         }
         : text { 
-          value = "å·²é€‰æ‹© 1";
+          value = "ÒÑÑ¡Ôñ 1";
           fixed_width=true;
            width = 10;
         }
@@ -46,13 +46,13 @@ MainMenu: dialog {
     }
 
     : boxed_column { 
-      label = "æ•°å€¼è¾“å…¥";
+      label = "ÊıÖµÊäÈë";
       fixed_height=true;
       fixed_width=true;
       height=3;
       width =24;
       : edit_box { 
-        label = "å›¾çº¸æ¯”ä¾‹  1:";
+        label = "Í¼Ö½±ÈÀı  1:";
         fixed_width =true;
         width =10;
         edit_width = 8;
@@ -60,7 +60,7 @@ MainMenu: dialog {
       }
 
       : edit_box { 
-        label = "æ­£å¸¸è“„æ°´ä½:";
+        label = "Õı³£ĞîË®Î»:";
         fixed_width =true;
         width =10;
         edit_width = 8;
@@ -70,9 +70,9 @@ MainMenu: dialog {
 
   }
 
-  //ç¬¬ä¸‰è¡Œï¼Œå¤‡é€‰çº¿æ®µé›†;
+  //µÚÈıĞĞ£¬±¸Ñ¡Ïß¶Î¼¯;
   : column {
-    label ="å¯é€‰çº¿æ®µ";
+    label ="¿ÉÑ¡Ïß¶Î";
     fixed_width = true;
     width = 50;
       :row{
@@ -82,11 +82,11 @@ MainMenu: dialog {
         : button { 
           fixed_width=true;
           width= 5;
-          label ="é€‰æ‹©åœ°é¢çº¿";
+          label ="Ñ¡ÔñµØÃæÏß";
           key = "SSGroundButtom";
           }
         : text { 
-          value = "å·²é€‰æ‹© 999";
+          value = "ÒÑÑ¡Ôñ 999";
           fixed_width=true;
            width = 10;
           alignment=left;
@@ -95,11 +95,11 @@ MainMenu: dialog {
           : button { 
           fixed_width=true;
           width= 5;
-          label ="é€‰æ‹©åœŸåº•çº¿";
+          label ="Ñ¡ÔñÍÁµ×Ïß";
           key = "SSSoilButtom";
           }
         : text { 
-          value = "å·²é€‰æ‹© 999";
+          value = "ÒÑÑ¡Ôñ 999";
           fixed_width=true;
            width = 10;
           alignment=left;
@@ -114,11 +114,11 @@ MainMenu: dialog {
         : button { 
           fixed_width=true;
           width= 5;
-          label ="é€‰æ‹©åé¡¶çº¿";
+          label ="Ñ¡Ôñ°Ó¶¥Ïß";
           key = "SSDamTopButtom";
           }
         : text { 
-          value = "å·²é€‰æ‹© 999";
+          value = "ÒÑÑ¡Ôñ 999";
           fixed_width=true;
            width = 10;
           alignment=left;
@@ -127,11 +127,11 @@ MainMenu: dialog {
           : button { 
           fixed_width=true;
           width= 5;
-          label ="é€‰æ‹©ååº•çº¿";
+          label ="Ñ¡Ôñ°Óµ×Ïß";
           key = "SSDamBottomButtom";
           }
         : text { 
-          value = "å·²é€‰æ‹© 999";
+          value = "ÒÑÑ¡Ôñ 999";
           fixed_width=true;
            width = 10;
           alignment=left;
@@ -145,11 +145,11 @@ MainMenu: dialog {
         : button { 
           fixed_width=true;
           width= 5;
-          label ="é€‰æ‹©å…¶å®ƒçº¿";
+          label ="Ñ¡ÔñÆäËüÏß";
           key = "SSConcreteButtom";
           }
         : text { 
-          value = "å·²é€‰æ‹© 999";
+          value = "ÒÑÑ¡Ôñ 999";
           fixed_width=true;
            width = 10;
           alignment=left;
@@ -163,11 +163,11 @@ MainMenu: dialog {
           : button { 
           fixed_width=true;
           width= 12;
-          label ="é‡ç½®æ‰€æœ‰é€‰æ‹©";
+          label ="ÖØÖÃËùÓĞÑ¡Ôñ";
           key = "SelectResetButtom";
           }
         // : text {
-        //   value = "å·²é€‰æ‹© 999";
+        //   value = "ÒÑÑ¡Ôñ 999";
         //   fixed_width=true;
         //    width = 10;
         //   alignment=left;
@@ -182,7 +182,7 @@ MainMenu: dialog {
     fixed_width =true;
     width=50;
     : button{ 
-      label="ä¿å­˜è·¯å¾„";
+      label="±£´æÂ·¾¶";
       fixed_width=true;
       width=4;
     }
